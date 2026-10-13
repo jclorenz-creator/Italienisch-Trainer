@@ -1,0 +1,164 @@
+<!doctype html><html lang="de"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1">
+<title>Episodio 3 – Il pranzo della domenica · Teil 2</title><style>
+body{font-family:-apple-system,BlinkMacSystemFont,"Segoe UI",sans-serif;max-width:1150px;margin:28px auto;padding:0 18px;background:#f5f5f7;color:#1d1d1f}
+h1{font-size:30px;margin-bottom:5px}.intro{color:#555}.status{padding:12px;background:#fff7d6;border-radius:10px;margin:14px 0}
+.card{display:grid;grid-template-columns:42px 1fr auto auto auto auto;gap:10px;align-items:center;background:#fff;border-radius:14px;padding:15px;margin:10px 0;box-shadow:0 1px 5px #0001}
+.num{font-weight:700;color:#666}.it{font-size:19px;font-weight:650}.de{font-size:14px;color:#666;margin-top:4px}
+button{border:0;border-radius:10px;padding:11px 13px;font-size:14px;cursor:pointer}.listen{background:#e8f0fe}.record{background:#fdecec}.mine{background:#eaf7ee}.delete{background:#eee}button:disabled{opacity:.4}
+@media(max-width:850px){.card{grid-template-columns:34px 1fr}button{grid-column:2;width:100%}}</style></head><body>
+<h1>Episodio 3 – Il pranzo della domenica · Teil 2</h1>
+<div class="intro">Il pranzo · 36 Sprecheinheiten</div>
+<div class="status" id="status">▶ Anhören spielt die korrigierte MP3-Datei ab. Beim ersten Klick auf „Aufnehmen“ bitte den Mikrofonzugriff erlauben. Aufnahmen funktionieren auf einer HTTPS-Seite (z. B. GitHub Pages) oder auf localhost.</div>
+<button class="delete" onclick="deleteAll()">🗑 Alle Aufnahmen löschen</button><p style="color:#53657b">Italienische Sätze und deutsche Übersetzungen lassen sich durch Anklicken bearbeiten. Die Audio-Dateien stammen aus deinem korrigierten ZIP-Archiv. Die sprachliche Zuordnung wurde noch nicht unabhängig überprüft.</p><section class="card"><div class="num">1</div><div class="txt"><div class="it" contenteditable="true" spellcheck="false">Prima di sedersi a tavola si assaggia un po’ di salame o di prosciutto crudo con le olive.</div><div class="de" contenteditable="true" spellcheck="false">Bevor man sich an den Tisch setzt, probiert man etwas Salami oder Rohschinken mit Oliven.</div></div>
+<button class="listen" onclick="playAudio(1)">▶ Anhören</button><button class="record" onclick="toggleRecord(1,this)">● Aufnehmen</button>
+<button class="mine" id="mine1" onclick="playMine(1)" disabled>▶ Meine Aufnahme</button><button id="del1" onclick="deleteMine(1)" disabled class="delete">🗑 Löschen</button>
+<audio id="a1" src="abschnitt_01.mp3" preload="auto"></audio></section>
+<section class="card"><div class="num">2</div><div class="txt"><div class="it" contenteditable="true" spellcheck="false">E poi arriva il vero protagonista.</div><div class="de" contenteditable="true" spellcheck="false">Und dann kommt der eigentliche Hauptdarsteller.</div></div>
+<button class="listen" onclick="playAudio(2)">▶ Anhören</button><button class="record" onclick="toggleRecord(2,this)">● Aufnehmen</button>
+<button class="mine" id="mine2" onclick="playMine(2)" disabled>▶ Meine Aufnahme</button><button id="del2" onclick="deleteMine(2)" disabled class="delete">🗑 Löschen</button>
+<audio id="a2" src="abschnitt_02.mp3" preload="auto"></audio></section>
+<section class="card"><div class="num">3</div><div class="txt"><div class="it" contenteditable="true" spellcheck="false">La pasta.</div><div class="de" contenteditable="true" spellcheck="false">Die Pasta.</div></div>
+<button class="listen" onclick="playAudio(3)">▶ Anhören</button><button class="record" onclick="toggleRecord(3,this)">● Aufnehmen</button>
+<button class="mine" id="mine3" onclick="playMine(3)" disabled>▶ Meine Aufnahme</button><button id="del3" onclick="deleteMine(3)" disabled class="delete">🗑 Löschen</button>
+<audio id="a3" src="abschnitt_03.mp3" preload="auto"></audio></section>
+<section class="card"><div class="num">4</div><div class="txt"><div class="it" contenteditable="true" spellcheck="false">A volte sono lasagne.</div><div class="de" contenteditable="true" spellcheck="false">Manchmal sind es Lasagne.</div></div>
+<button class="listen" onclick="playAudio(4)">▶ Anhören</button><button class="record" onclick="toggleRecord(4,this)">● Aufnehmen</button>
+<button class="mine" id="mine4" onclick="playMine(4)" disabled>▶ Meine Aufnahme</button><button id="del4" onclick="deleteMine(4)" disabled class="delete">🗑 Löschen</button>
+<audio id="a4" src="abschnitt_04.mp3" preload="auto"></audio></section>
+<section class="card"><div class="num">5</div><div class="txt"><div class="it" contenteditable="true" spellcheck="false">Altre volte cannelloni.</div><div class="de" contenteditable="true" spellcheck="false">Andere Male Cannelloni.</div></div>
+<button class="listen" onclick="playAudio(5)">▶ Anhören</button><button class="record" onclick="toggleRecord(5,this)">● Aufnehmen</button>
+<button class="mine" id="mine5" onclick="playMine(5)" disabled>▶ Meine Aufnahme</button><button id="del5" onclick="deleteMine(5)" disabled class="delete">🗑 Löschen</button>
+<audio id="a5" src="abschnitt_05.mp3" preload="auto"></audio></section>
+<section class="card"><div class="num">6</div><div class="txt"><div class="it" contenteditable="true" spellcheck="false">Pasta al forno.</div><div class="de" contenteditable="true" spellcheck="false">Überbackene Pasta.</div></div>
+<button class="listen" onclick="playAudio(6)">▶ Anhören</button><button class="record" onclick="toggleRecord(6,this)">● Aufnehmen</button>
+<button class="mine" id="mine6" onclick="playMine(6)" disabled>▶ Meine Aufnahme</button><button id="del6" onclick="deleteMine(6)" disabled class="delete">🗑 Löschen</button>
+<audio id="a6" src="abschnitt_06.mp3" preload="auto"></audio></section>
+<section class="card"><div class="num">7</div><div class="txt"><div class="it" contenteditable="true" spellcheck="false">O tagliatelle al ragù.</div><div class="de" contenteditable="true" spellcheck="false">Oder Tagliatelle mit Ragù.</div></div>
+<button class="listen" onclick="playAudio(7)">▶ Anhören</button><button class="record" onclick="toggleRecord(7,this)">● Aufnehmen</button>
+<button class="mine" id="mine7" onclick="playMine(7)" disabled>▶ Meine Aufnahme</button><button id="del7" onclick="deleteMine(7)" disabled class="delete">🗑 Löschen</button>
+<audio id="a7" src="abschnitt_07.mp3" preload="auto"></audio></section>
+<section class="card"><div class="num">8</div><div class="txt"><div class="it" contenteditable="true" spellcheck="false">I sughi hanno cotto per ore a fuoco lento.</div><div class="de" contenteditable="true" spellcheck="false">Die Saucen haben stundenlang bei niedriger Hitze gekocht.</div></div>
+<button class="listen" onclick="playAudio(8)">▶ Anhören</button><button class="record" onclick="toggleRecord(8,this)">● Aufnehmen</button>
+<button class="mine" id="mine8" onclick="playMine(8)" disabled>▶ Meine Aufnahme</button><button id="del8" onclick="deleteMine(8)" disabled class="delete">🗑 Löschen</button>
+<audio id="a8" src="abschnitt_08.mp3" preload="auto"></audio></section>
+<section class="card"><div class="num">9</div><div class="txt"><div class="it" contenteditable="true" spellcheck="false">E ognuno ha il proprio ingrediente segreto di famiglia.</div><div class="de" contenteditable="true" spellcheck="false">Und jeder hat seine eigene geheime Familienzutat.</div></div>
+<button class="listen" onclick="playAudio(9)">▶ Anhören</button><button class="record" onclick="toggleRecord(9,this)">● Aufnehmen</button>
+<button class="mine" id="mine9" onclick="playMine(9)" disabled>▶ Meine Aufnahme</button><button id="del9" onclick="deleteMine(9)" disabled class="delete">🗑 Löschen</button>
+<audio id="a9" src="abschnitt_09.mp3" preload="auto"></audio></section>
+<section class="card"><div class="num">10</div><div class="txt"><div class="it" contenteditable="true" spellcheck="false">Dopo il primo piatto c’è il secondo.</div><div class="de" contenteditable="true" spellcheck="false">Nach dem ersten Gang kommt der zweite.</div></div>
+<button class="listen" onclick="playAudio(10)">▶ Anhören</button><button class="record" onclick="toggleRecord(10,this)">● Aufnehmen</button>
+<button class="mine" id="mine10" onclick="playMine(10)" disabled>▶ Meine Aufnahme</button><button id="del10" onclick="deleteMine(10)" disabled class="delete">🗑 Löschen</button>
+<audio id="a10" src="abschnitt_10.mp3" preload="auto"></audio></section>
+<section class="card"><div class="num">11</div><div class="txt"><div class="it" contenteditable="true" spellcheck="false">Arriva l’arrosto o il pollo con le patate.</div><div class="de" contenteditable="true" spellcheck="false">Es gibt Braten oder Hähnchen mit Kartoffeln.</div></div>
+<button class="listen" onclick="playAudio(11)">▶ Anhören</button><button class="record" onclick="toggleRecord(11,this)">● Aufnehmen</button>
+<button class="mine" id="mine11" onclick="playMine(11)" disabled>▶ Meine Aufnahme</button><button id="del11" onclick="deleteMine(11)" disabled class="delete">🗑 Löschen</button>
+<audio id="a11" src="abschnitt_11.mp3" preload="auto"></audio></section>
+<section class="card"><div class="num">12</div><div class="txt"><div class="it" contenteditable="true" spellcheck="false">Le polpette.</div><div class="de" contenteditable="true" spellcheck="false">Die Fleischbällchen.</div></div>
+<button class="listen" onclick="playAudio(12)">▶ Anhören</button><button class="record" onclick="toggleRecord(12,this)">● Aufnehmen</button>
+<button class="mine" id="mine12" onclick="playMine(12)" disabled>▶ Meine Aufnahme</button><button id="del12" onclick="deleteMine(12)" disabled class="delete">🗑 Löschen</button>
+<audio id="a12" src="abschnitt_12.mp3" preload="auto"></audio></section>
+<section class="card"><div class="num">13</div><div class="txt"><div class="it" contenteditable="true" spellcheck="false">Le insalate.</div><div class="de" contenteditable="true" spellcheck="false">Die Salate.</div></div>
+<button class="listen" onclick="playAudio(13)">▶ Anhören</button><button class="record" onclick="toggleRecord(13,this)">● Aufnehmen</button>
+<button class="mine" id="mine13" onclick="playMine(13)" disabled>▶ Meine Aufnahme</button><button id="del13" onclick="deleteMine(13)" disabled class="delete">🗑 Löschen</button>
+<audio id="a13" src="abschnitt_13.mp3" preload="auto"></audio></section>
+<section class="card"><div class="num">14</div><div class="txt"><div class="it" contenteditable="true" spellcheck="false">I contorni.</div><div class="de" contenteditable="true" spellcheck="false">Die Beilagen.</div></div>
+<button class="listen" onclick="playAudio(14)">▶ Anhören</button><button class="record" onclick="toggleRecord(14,this)">● Aufnehmen</button>
+<button class="mine" id="mine14" onclick="playMine(14)" disabled>▶ Meine Aufnahme</button><button id="del14" onclick="deleteMine(14)" disabled class="delete">🗑 Löschen</button>
+<audio id="a14" src="abschnitt_14.mp3" preload="auto"></audio></section>
+<section class="card"><div class="num">15</div><div class="txt"><div class="it" contenteditable="true" spellcheck="false">Il pane fresco.</div><div class="de" contenteditable="true" spellcheck="false">Das frische Brot.</div></div>
+<button class="listen" onclick="playAudio(15)">▶ Anhören</button><button class="record" onclick="toggleRecord(15,this)">● Aufnehmen</button>
+<button class="mine" id="mine15" onclick="playMine(15)" disabled>▶ Meine Aufnahme</button><button id="del15" onclick="deleteMine(15)" disabled class="delete">🗑 Löschen</button>
+<audio id="a15" src="abschnitt_15.mp3" preload="auto"></audio></section>
+<section class="card"><div class="num">16</div><div class="txt"><div class="it" contenteditable="true" spellcheck="false">Tutto viene servito in mezzo.</div><div class="de" contenteditable="true" spellcheck="false">Alles wird in der Mitte serviert.</div></div>
+<button class="listen" onclick="playAudio(16)">▶ Anhören</button><button class="record" onclick="toggleRecord(16,this)">● Aufnehmen</button>
+<button class="mine" id="mine16" onclick="playMine(16)" disabled>▶ Meine Aufnahme</button><button id="del16" onclick="deleteMine(16)" disabled class="delete">🗑 Löschen</button>
+<audio id="a16" src="abschnitt_16.mp3" preload="auto"></audio></section>
+<section class="card"><div class="num">17</div><div class="txt"><div class="it" contenteditable="true" spellcheck="false">Cioè in grandi piatti al centro della tavola.</div><div class="de" contenteditable="true" spellcheck="false">Das heißt, auf großen Platten in der Mitte des Tisches.</div></div>
+<button class="listen" onclick="playAudio(17)">▶ Anhören</button><button class="record" onclick="toggleRecord(17,this)">● Aufnehmen</button>
+<button class="mine" id="mine17" onclick="playMine(17)" disabled>▶ Meine Aufnahme</button><button id="del17" onclick="deleteMine(17)" disabled class="delete">🗑 Löschen</button>
+<audio id="a17" src="abschnitt_17.mp3" preload="auto"></audio></section>
+<section class="card"><div class="num">18</div><div class="txt"><div class="it" contenteditable="true" spellcheck="false">Da cui ognuno si serve.</div><div class="de" contenteditable="true" spellcheck="false">Von denen sich jeder selbst bedient.</div></div>
+<button class="listen" onclick="playAudio(18)">▶ Anhören</button><button class="record" onclick="toggleRecord(18,this)">● Aufnehmen</button>
+<button class="mine" id="mine18" onclick="playMine(18)" disabled>▶ Meine Aufnahme</button><button id="del18" onclick="deleteMine(18)" disabled class="delete">🗑 Löschen</button>
+<audio id="a18" src="abschnitt_18.mp3" preload="auto"></audio></section>
+<section class="card"><div class="num">19</div><div class="txt"><div class="it" contenteditable="true" spellcheck="false">E quando sembra che sia davvero abbastanza, arriva il dolce.</div><div class="de" contenteditable="true" spellcheck="false">Und wenn es wirklich genug zu sein scheint, kommt das Dessert.</div></div>
+<button class="listen" onclick="playAudio(19)">▶ Anhören</button><button class="record" onclick="toggleRecord(19,this)">● Aufnehmen</button>
+<button class="mine" id="mine19" onclick="playMine(19)" disabled>▶ Meine Aufnahme</button><button id="del19" onclick="deleteMine(19)" disabled class="delete">🗑 Löschen</button>
+<audio id="a19" src="abschnitt_19.mp3" preload="auto"></audio></section>
+<section class="card"><div class="num">20</div><div class="txt"><div class="it" contenteditable="true" spellcheck="false">Di solito un tiramisù o una crostata fatta in casa.</div><div class="de" contenteditable="true" spellcheck="false">Normalerweise ein Tiramisù oder eine hausgemachte Crostata.</div></div>
+<button class="listen" onclick="playAudio(20)">▶ Anhören</button><button class="record" onclick="toggleRecord(20,this)">● Aufnehmen</button>
+<button class="mine" id="mine20" onclick="playMine(20)" disabled>▶ Meine Aufnahme</button><button id="del20" onclick="deleteMine(20)" disabled class="delete">🗑 Löschen</button>
+<audio id="a20" src="abschnitt_20.mp3" preload="auto"></audio></section>
+<section class="card"><div class="num">21</div><div class="txt"><div class="it" contenteditable="true" spellcheck="false">Dei biscotti.</div><div class="de" contenteditable="true" spellcheck="false">Kekse.</div></div>
+<button class="listen" onclick="playAudio(21)">▶ Anhören</button><button class="record" onclick="toggleRecord(21,this)">● Aufnehmen</button>
+<button class="mine" id="mine21" onclick="playMine(21)" disabled>▶ Meine Aufnahme</button><button id="del21" onclick="deleteMine(21)" disabled class="delete">🗑 Löschen</button>
+<audio id="a21" src="abschnitt_21.mp3" preload="auto"></audio></section>
+<section class="card"><div class="num">22</div><div class="txt"><div class="it" contenteditable="true" spellcheck="false">O dolci di famiglia preparati seguendo le ricette delle nonne.</div><div class="de" contenteditable="true" spellcheck="false">Oder Familiendesserts, die nach den Rezepten der Großmütter zubereitet werden.</div></div>
+<button class="listen" onclick="playAudio(22)">▶ Anhören</button><button class="record" onclick="toggleRecord(22,this)">● Aufnehmen</button>
+<button class="mine" id="mine22" onclick="playMine(22)" disabled>▶ Meine Aufnahme</button><button id="del22" onclick="deleteMine(22)" disabled class="delete">🗑 Löschen</button>
+<audio id="a22" src="abschnitt_22.mp3" preload="auto"></audio></section>
+<section class="card"><div class="num">23</div><div class="txt"><div class="it" contenteditable="true" spellcheck="false">Alla fine, naturalmente, il caffè.</div><div class="de" contenteditable="true" spellcheck="false">Zum Schluss natürlich der Kaffee.</div></div>
+<button class="listen" onclick="playAudio(23)">▶ Anhören</button><button class="record" onclick="toggleRecord(23,this)">● Aufnehmen</button>
+<button class="mine" id="mine23" onclick="playMine(23)" disabled>▶ Meine Aufnahme</button><button id="del23" onclick="deleteMine(23)" disabled class="delete">🗑 Löschen</button>
+<audio id="a23" src="abschnitt_23.mp3" preload="auto"></audio></section>
+<section class="card"><div class="num">24</div><div class="txt"><div class="it" contenteditable="true" spellcheck="false">E spesso con il caffè arriva anche l’ammazzacaffè.</div><div class="de" contenteditable="true" spellcheck="false">Und oft kommt mit dem Kaffee auch der Ammazzacaffè.</div></div>
+<button class="listen" onclick="playAudio(24)">▶ Anhören</button><button class="record" onclick="toggleRecord(24,this)">● Aufnehmen</button>
+<button class="mine" id="mine24" onclick="playMine(24)" disabled>▶ Meine Aufnahme</button><button id="del24" onclick="deleteMine(24)" disabled class="delete">🗑 Löschen</button>
+<audio id="a24" src="abschnitt_24.mp3" preload="auto"></audio></section>
+<section class="card"><div class="num">25</div><div class="txt"><div class="it" contenteditable="true" spellcheck="false">Un piccolo bicchiere di liquore come l’amaro o il limoncello.</div><div class="de" contenteditable="true" spellcheck="false">Ein kleines Glas Likör, zum Beispiel Amaro oder Limoncello.</div></div>
+<button class="listen" onclick="playAudio(25)">▶ Anhören</button><button class="record" onclick="toggleRecord(25,this)">● Aufnehmen</button>
+<button class="mine" id="mine25" onclick="playMine(25)" disabled>▶ Meine Aufnahme</button><button id="del25" onclick="deleteMine(25)" disabled class="delete">🗑 Löschen</button>
+<audio id="a25" src="abschnitt_25.mp3" preload="auto"></audio></section>
+<section class="card"><div class="num">26</div><div class="txt"><div class="it" contenteditable="true" spellcheck="false">Ogni regione italiana ha il suo pranzo della domenica.</div><div class="de" contenteditable="true" spellcheck="false">Jede italienische Region hat ihr eigenes Sonntagsessen.</div></div>
+<button class="listen" onclick="playAudio(26)">▶ Anhören</button><button class="record" onclick="toggleRecord(26,this)">● Aufnehmen</button>
+<button class="mine" id="mine26" onclick="playMine(26)" disabled>▶ Meine Aufnahme</button><button id="del26" onclick="deleteMine(26)" disabled class="delete">🗑 Löschen</button>
+<audio id="a26" src="abschnitt_26.mp3" preload="auto"></audio></section>
+<section class="card"><div class="num">27</div><div class="txt"><div class="it" contenteditable="true" spellcheck="false">In Emilia-Romagna non possono mancare le tagliatelle al ragù o i tortellini in brodo.</div><div class="de" contenteditable="true" spellcheck="false">In der Emilia-Romagna dürfen Tagliatelle al ragù oder Tortellini in Brühe nicht fehlen.</div></div>
+<button class="listen" onclick="playAudio(27)">▶ Anhören</button><button class="record" onclick="toggleRecord(27,this)">● Aufnehmen</button>
+<button class="mine" id="mine27" onclick="playMine(27)" disabled>▶ Meine Aufnahme</button><button id="del27" onclick="deleteMine(27)" disabled class="delete">🗑 Löschen</button>
+<audio id="a27" src="abschnitt_27.mp3" preload="auto"></audio></section>
+<section class="card"><div class="num">28</div><div class="txt"><div class="it" contenteditable="true" spellcheck="false">In Campania, la regina è la lasagna napoletana.</div><div class="de" contenteditable="true" spellcheck="false">In Kampanien ist die neapolitanische Lasagne die Königin.</div></div>
+<button class="listen" onclick="playAudio(28)">▶ Anhören</button><button class="record" onclick="toggleRecord(28,this)">● Aufnehmen</button>
+<button class="mine" id="mine28" onclick="playMine(28)" disabled>▶ Meine Aufnahme</button><button id="del28" onclick="deleteMine(28)" disabled class="delete">🗑 Löschen</button>
+<audio id="a28" src="abschnitt_28.mp3" preload="auto"></audio></section>
+<section class="card"><div class="num">29</div><div class="txt"><div class="it" contenteditable="true" spellcheck="false">Ricca di ricotta, polpettine e uova sode.</div><div class="de" contenteditable="true" spellcheck="false">Reichhaltig mit Ricotta, kleinen Fleischbällchen und hartgekochten Eiern.</div></div>
+<button class="listen" onclick="playAudio(29)">▶ Anhören</button><button class="record" onclick="toggleRecord(29,this)">● Aufnehmen</button>
+<button class="mine" id="mine29" onclick="playMine(29)" disabled>▶ Meine Aufnahme</button><button id="del29" onclick="deleteMine(29)" disabled class="delete">🗑 Löschen</button>
+<audio id="a29" src="abschnitt_29.mp3" preload="auto"></audio></section>
+<section class="card"><div class="num">30</div><div class="txt"><div class="it" contenteditable="true" spellcheck="false">In Sicilia il piatto della festa è la pasta al forno con melanzane.</div><div class="de" contenteditable="true" spellcheck="false">In Sizilien ist das Festtagsgericht überbackene Pasta mit Auberginen.</div></div>
+<button class="listen" onclick="playAudio(30)">▶ Anhören</button><button class="record" onclick="toggleRecord(30,this)">● Aufnehmen</button>
+<button class="mine" id="mine30" onclick="playMine(30)" disabled>▶ Meine Aufnahme</button><button id="del30" onclick="deleteMine(30)" disabled class="delete">🗑 Löschen</button>
+<audio id="a30" src="abschnitt_30.mp3" preload="auto"></audio></section>
+<section class="card"><div class="num">31</div><div class="txt"><div class="it" contenteditable="true" spellcheck="false">Mentre in Puglia le famiglie preparano le orecchiette con le cime di rapa.</div><div class="de" contenteditable="true" spellcheck="false">Während die Familien in Apulien Orecchiette mit Stängelkohl zubereiten.</div></div>
+<button class="listen" onclick="playAudio(31)">▶ Anhören</button><button class="record" onclick="toggleRecord(31,this)">● Aufnehmen</button>
+<button class="mine" id="mine31" onclick="playMine(31)" disabled>▶ Meine Aufnahme</button><button id="del31" onclick="deleteMine(31)" disabled class="delete">🗑 Löschen</button>
+<audio id="a31" src="abschnitt_31.mp3" preload="auto"></audio></section>
+<section class="card"><div class="num">32</div><div class="txt"><div class="it" contenteditable="true" spellcheck="false">Molte famiglie non hanno le ricette scritte.</div><div class="de" contenteditable="true" spellcheck="false">Viele Familien haben keine aufgeschriebenen Rezepte.</div></div>
+<button class="listen" onclick="playAudio(32)">▶ Anhören</button><button class="record" onclick="toggleRecord(32,this)">● Aufnehmen</button>
+<button class="mine" id="mine32" onclick="playMine(32)" disabled>▶ Meine Aufnahme</button><button id="del32" onclick="deleteMine(32)" disabled class="delete">🗑 Löschen</button>
+<audio id="a32" src="abschnitt_32.mp3" preload="auto"></audio></section>
+<section class="card"><div class="num">33</div><div class="txt"><div class="it" contenteditable="true" spellcheck="false">Tutto si tramanda a voce.</div><div class="de" contenteditable="true" spellcheck="false">Alles wird mündlich weitergegeben.</div></div>
+<button class="listen" onclick="playAudio(33)">▶ Anhören</button><button class="record" onclick="toggleRecord(33,this)">● Aufnehmen</button>
+<button class="mine" id="mine33" onclick="playMine(33)" disabled>▶ Meine Aufnahme</button><button id="del33" onclick="deleteMine(33)" disabled class="delete">🗑 Löschen</button>
+<audio id="a33" src="abschnitt_33.mp3" preload="auto"></audio></section>
+<section class="card"><div class="num">34</div><div class="txt"><div class="it" contenteditable="true" spellcheck="false">Le dosi sono: “Quanto basta”.</div><div class="de" contenteditable="true" spellcheck="false">Bei den Mengen heißt es: „So viel wie nötig.“</div></div>
+<button class="listen" onclick="playAudio(34)">▶ Anhören</button><button class="record" onclick="toggleRecord(34,this)">● Aufnehmen</button>
+<button class="mine" id="mine34" onclick="playMine(34)" disabled>▶ Meine Aufnahme</button><button id="del34" onclick="deleteMine(34)" disabled class="delete">🗑 Löschen</button>
+<audio id="a34" src="abschnitt_34.mp3" preload="auto"></audio></section>
+<section class="card"><div class="num">35</div><div class="txt"><div class="it" contenteditable="true" spellcheck="false">I tempi sono: “Quando lo vedi pronto”.</div><div class="de" contenteditable="true" spellcheck="false">Bei den Garzeiten heißt es: „Wenn du siehst, dass es fertig ist.“</div></div>
+<button class="listen" onclick="playAudio(35)">▶ Anhören</button><button class="record" onclick="toggleRecord(35,this)">● Aufnehmen</button>
+<button class="mine" id="mine35" onclick="playMine(35)" disabled>▶ Meine Aufnahme</button><button id="del35" onclick="deleteMine(35)" disabled class="delete">🗑 Löschen</button>
+<audio id="a35" src="abschnitt_35.mp3" preload="auto"></audio></section>
+<section class="card"><div class="num">36</div><div class="txt"><div class="it" contenteditable="true" spellcheck="false">È una cucina fatta di gesti e di esperienza.</div><div class="de" contenteditable="true" spellcheck="false">Es ist eine Küche, die aus Handgriffen und Erfahrung besteht.</div></div>
+<button class="listen" onclick="playAudio(36)">▶ Anhören</button><button class="record" onclick="toggleRecord(36,this)">● Aufnehmen</button>
+<button class="mine" id="mine36" onclick="playMine(36)" disabled>▶ Meine Aufnahme</button><button id="del36" onclick="deleteMine(36)" disabled class="delete">🗑 Löschen</button>
+<audio id="a36" src="abschnitt_36.mp3" preload="auto"></audio></section>
+<script>
+let micStream=null,rec=null,chunks=[],blobs={},current=null;const status=document.getElementById('status');
+async function initMic(){if(micStream&&micStream.active)return true;if(!navigator.mediaDevices?.getUserMedia){status.textContent='Aufnehmen benötigt HTTPS (z. B. GitHub Pages) und Mikrofonfreigabe.';return false;}try{micStream=await navigator.mediaDevices.getUserMedia({audio:true});status.textContent='Mikrofon ist bereit.';return true;}catch(e){status.textContent='Mikrofonzugriff nicht möglich. Bitte Browser-Berechtigung prüfen.';return false;}}
+function playAudio(i){const a=document.getElementById('a'+i);document.querySelectorAll('audio').forEach(other=>{if(other!==a){other.pause();other.currentTime=0;}});a.currentTime=0;a.play().catch(e=>{status.textContent='Audio '+String(i).padStart(2,'0')+' konnte nicht abgespielt werden. Bitte prüfen, ob abschnitt_'+String(i).padStart(2,'0')+'.mp3 im selben Ordner liegt.';});}
+async function toggleRecord(i,b){if(rec&&rec.state==='recording'){if(current===i)rec.stop();return;}if(!(await initMic()))return;chunks=[];current=i;rec=new MediaRecorder(micStream);rec.ondataavailable=e=>{if(e.data.size)chunks.push(e.data)};rec.onstop=()=>{if(blobs[i])URL.revokeObjectURL(blobs[i]);blobs[i]=URL.createObjectURL(new Blob(chunks,{type:rec.mimeType}));document.getElementById('mine'+i).disabled=false;document.getElementById('del'+i).disabled=false;b.textContent='● Neu aufnehmen';status.textContent='Aufnahme gespeichert.';};rec.start();b.textContent='■ Aufnahme stoppen';status.textContent='Aufnahme läuft …';}
+function playMine(i){if(blobs[i])new Audio(blobs[i]).play();}
+function deleteMine(i){if(blobs[i]){URL.revokeObjectURL(blobs[i]);delete blobs[i]}document.getElementById('mine'+i).disabled=true;document.getElementById('del'+i).disabled=true;document.getElementById('del'+i).closest('.card').querySelector('.record').textContent='● Aufnehmen';}
+function deleteAll(){Object.keys(blobs).forEach(i=>{URL.revokeObjectURL(blobs[i]);delete blobs[i]});document.querySelectorAll('.mine').forEach(b=>b.disabled=true);document.querySelectorAll('[id^=del]').forEach(b=>b.disabled=true);document.querySelectorAll('.record').forEach(b=>b.textContent='● Aufnehmen');status.textContent='Alle eigenen Aufnahmen wurden gelöscht.';}
+</script></body></html>
