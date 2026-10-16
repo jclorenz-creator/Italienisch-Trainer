@@ -1,0 +1,197 @@
+<!doctype html>
+<html lang="de"><head><meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<title>JC Italienisch – Lektion 1</title>
+<style>
+body{font-family:-apple-system,BlinkMacSystemFont,"Segoe UI",sans-serif;max-width:980px;margin:28px auto;padding:0 18px;background:#f5f5f7;color:#1d1d1f}
+h1{font-size:30px;margin-bottom:6px} .intro{margin-bottom:22px;color:#555}
+.card{display:grid;grid-template-columns:42px 1fr auto auto auto auto;gap:10px;align-items:center;background:white;border-radius:14px;padding:15px;margin:11px 0;box-shadow:0 1px 5px #0001}
+.num{font-weight:700;color:#666} .it{font-size:20px;font-weight:650} .de{font-size:14px;color:#666;margin-top:3px}
+button{border:0;border-radius:10px;padding:11px 13px;font-size:14px;cursor:pointer}
+.listen{background:#e8f0fe} .record{background:#fdecec} .mine{background:#eaf7ee}
+button:disabled{opacity:.4;cursor:default}
+.status{padding:12px;background:#fff7d6;border-radius:10px;margin:14px 0;font-size:14px}
+@media(max-width:760px){.card{grid-template-columns:34px 1fr}button{grid-column:2;width:100%}}
+</style></head><body>
+<nav style="margin:0 0 16px"><a href="../index.html" style="color:#185abc;text-decoration:none;font-weight:650">← Zur Themenübersicht</a></nav>
+
+<h1>Lektion 1: Begrüssung &amp; Verständigung</h1>
+<div class="intro">Hören → selbst sprechen → eigene Aufnahme anhören. Originalstimme: deine ElevenLabs-Aufnahme mit Adriatico.</div>
+<div class="status" id="status">Beim ersten Aufnehmen fragt der Browser nach Mikrofonzugriff. Bitte „Erlauben“ wählen.</div><div style="margin:0 0 16px 0"><button onclick="deleteAll()" style="background:#eee">🗑 Alle Aufnahmen löschen</button></div>
+<section class="card">
+<div class="num">1</div>
+<div class="txt"><div class="it">Buongiorno.</div><div class="de">Guten Tag.</div></div>
+<button class="listen" onclick="playAudio(1)">▶ Anhören</button>
+<button class="record" onclick="toggleRecord(1, this)">● Aufnehmen</button>
+<button class="mine" id="mine1" onclick="playMine(1)" disabled>▶ Meine Aufnahme</button><button id="del1" onclick="deleteMine(1)" disabled style="background:#eee">🗑 Löschen</button>
+<audio id="a1" src="satz_01.mp3" preload="auto"></audio>
+</section>
+<section class="card">
+<div class="num">2</div>
+<div class="txt"><div class="it">Mi chiamo Jean-Claude.</div><div class="de">Ich heiße Jean-Claude.</div></div>
+<button class="listen" onclick="playAudio(2)">▶ Anhören</button>
+<button class="record" onclick="toggleRecord(2, this)">● Aufnehmen</button>
+<button class="mine" id="mine2" onclick="playMine(2)" disabled>▶ Meine Aufnahme</button><button id="del2" onclick="deleteMine(2)" disabled style="background:#eee">🗑 Löschen</button>
+<audio id="a2" src="satz_02.mp3" preload="auto"></audio>
+</section>
+<section class="card">
+<div class="num">3</div>
+<div class="txt"><div class="it">Come si chiama?</div><div class="de">Wie heißen Sie?</div></div>
+<button class="listen" onclick="playAudio(3)">▶ Anhören</button>
+<button class="record" onclick="toggleRecord(3, this)">● Aufnehmen</button>
+<button class="mine" id="mine3" onclick="playMine(3)" disabled>▶ Meine Aufnahme</button><button id="del3" onclick="deleteMine(3)" disabled style="background:#eee">🗑 Löschen</button>
+<audio id="a3" src="satz_03.mp3" preload="auto"></audio>
+</section>
+<section class="card">
+<div class="num">4</div>
+<div class="txt"><div class="it">Piacere di conoscerla.</div><div class="de">Freut mich, Sie kennenzulernen.</div></div>
+<button class="listen" onclick="playAudio(4)">▶ Anhören</button>
+<button class="record" onclick="toggleRecord(4, this)">● Aufnehmen</button>
+<button class="mine" id="mine4" onclick="playMine(4)" disabled>▶ Meine Aufnahme</button><button id="del4" onclick="deleteMine(4)" disabled style="background:#eee">🗑 Löschen</button>
+<audio id="a4" src="satz_04.mp3" preload="auto"></audio>
+</section>
+<section class="card">
+<div class="num">5</div>
+<div class="txt"><div class="it">Non ho capito.</div><div class="de">Ich habe nicht verstanden.</div></div>
+<button class="listen" onclick="playAudio(5)">▶ Anhören</button>
+<button class="record" onclick="toggleRecord(5, this)">● Aufnehmen</button>
+<button class="mine" id="mine5" onclick="playMine(5)" disabled>▶ Meine Aufnahme</button><button id="del5" onclick="deleteMine(5)" disabled style="background:#eee">🗑 Löschen</button>
+<audio id="a5" src="satz_05.mp3" preload="auto"></audio>
+</section>
+<section class="card">
+<div class="num">6</div>
+<div class="txt"><div class="it">Può ripetere, per favore?</div><div class="de">Können Sie das bitte wiederholen?</div></div>
+<button class="listen" onclick="playAudio(6)">▶ Anhören</button>
+<button class="record" onclick="toggleRecord(6, this)">● Aufnehmen</button>
+<button class="mine" id="mine6" onclick="playMine(6)" disabled>▶ Meine Aufnahme</button><button id="del6" onclick="deleteMine(6)" disabled style="background:#eee">🗑 Löschen</button>
+<audio id="a6" src="satz_06.mp3" preload="auto"></audio>
+</section>
+<section class="card">
+<div class="num">7</div>
+<div class="txt"><div class="it">Può parlare più lentamente, per favore?</div><div class="de">Können Sie bitte langsamer sprechen?</div></div>
+<button class="listen" onclick="playAudio(7)">▶ Anhören</button>
+<button class="record" onclick="toggleRecord(7, this)">● Aufnehmen</button>
+<button class="mine" id="mine7" onclick="playMine(7)" disabled>▶ Meine Aufnahme</button><button id="del7" onclick="deleteMine(7)" disabled style="background:#eee">🗑 Löschen</button>
+<audio id="a7" src="satz_07.mp3" preload="auto"></audio>
+</section>
+<section class="card">
+<div class="num">8</div>
+<div class="txt"><div class="it">Scusi, come dice?</div><div class="de">Entschuldigung, wie bitte?</div></div>
+<button class="listen" onclick="playAudio(8)">▶ Anhören</button>
+<button class="record" onclick="toggleRecord(8, this)">● Aufnehmen</button>
+<button class="mine" id="mine8" onclick="playMine(8)" disabled>▶ Meine Aufnahme</button><button id="del8" onclick="deleteMine(8)" disabled style="background:#eee">🗑 Löschen</button>
+<audio id="a8" src="satz_08.mp3" preload="auto"></audio>
+</section>
+<section class="card">
+<div class="num">9</div>
+<div class="txt"><div class="it">Non la sento bene.</div><div class="de">Ich kann Sie nicht gut hören.</div></div>
+<button class="listen" onclick="playAudio(9)">▶ Anhören</button>
+<button class="record" onclick="toggleRecord(9, this)">● Aufnehmen</button>
+<button class="mine" id="mine9" onclick="playMine(9)" disabled>▶ Meine Aufnahme</button><button id="del9" onclick="deleteMine(9)" disabled style="background:#eee">🗑 Löschen</button>
+<audio id="a9" src="satz_09.mp3" preload="auto"></audio>
+</section>
+<section class="card">
+<div class="num">10</div>
+<div class="txt"><div class="it">Può parlare più forte, per favore?</div><div class="de">Können Sie bitte lauter sprechen?</div></div>
+<button class="listen" onclick="playAudio(10)">▶ Anhören</button>
+<button class="record" onclick="toggleRecord(10, this)">● Aufnehmen</button>
+<button class="mine" id="mine10" onclick="playMine(10)" disabled>▶ Meine Aufnahme</button><button id="del10" onclick="deleteMine(10)" disabled style="background:#eee">🗑 Löschen</button>
+<audio id="a10" src="satz_10.mp3" preload="auto"></audio>
+</section>
+<script>
+let micStream = null;
+let rec = null;
+let chunks = [];
+let blobs = {};
+let current = null;
+
+async function initMic() {
+  if (micStream && micStream.active) return true;
+  try {
+    micStream = await navigator.mediaDevices.getUserMedia({audio:true});
+    document.getElementById('status').textContent =
+      'Mikrofon ist bereit. Du kannst jetzt alle Sätze aufnehmen, ohne erneut zu bestätigen.';
+    return true;
+  } catch(e) {
+    document.getElementById('status').textContent =
+      'Mikrofonzugriff wurde nicht erlaubt. Bitte im Browser den Mikrofonzugriff für diese Datei erlauben.';
+    return false;
+  }
+}
+
+function playAudio(i) {
+  const a = document.getElementById('a'+i);
+  a.currentTime = 0;
+  a.play();
+}
+
+async function toggleRecord(i, btn) {
+  if (rec && rec.state === 'recording') {
+    if (current === i) rec.stop();
+    return;
+  }
+
+  if (!(await initMic())) return;
+
+  chunks = [];
+  current = i;
+  rec = new MediaRecorder(micStream);
+
+  rec.ondataavailable = e => {
+    if (e.data && e.data.size > 0) chunks.push(e.data);
+  };
+
+  rec.onstop = () => {
+    blobs[i] = URL.createObjectURL(new Blob(chunks, {type: rec.mimeType}));
+    document.getElementById('mine'+i).disabled = false;
+    document.getElementById('del'+i).disabled = false;
+    btn.textContent = '● Neu aufnehmen';
+    document.getElementById('status').textContent =
+      'Aufnahme gespeichert. Das Mikrofon bleibt für die nächsten Sätze bereit.';
+  };
+
+  rec.start();
+  btn.textContent = '■ Aufnahme stoppen';
+  document.getElementById('status').textContent =
+    'Aufnahme läuft … sprich den Satz und klicke danach auf „Aufnahme stoppen“.';
+}
+
+function playMine(i) {
+  if (blobs[i]) new Audio(blobs[i]).play();
+}
+
+
+function deleteMine(i) {
+  if (blobs[i]) {
+    URL.revokeObjectURL(blobs[i]);
+    delete blobs[i];
+  }
+  document.getElementById('mine'+i).disabled = true;
+  document.getElementById('del'+i).disabled = true;
+  const card = document.getElementById('mine'+i).closest('.card');
+  const recordButton = card.querySelector('.record');
+  recordButton.textContent = '● Aufnehmen';
+  document.getElementById('status').textContent =
+    'Aufnahme von Satz ' + i + ' wurde gelöscht. Du kannst ihn neu aufnehmen.';
+}
+
+function deleteAll() {
+  Object.keys(blobs).forEach(i => {
+    if (blobs[i]) URL.revokeObjectURL(blobs[i]);
+    delete blobs[i];
+    const mine = document.getElementById('mine'+i);
+    const del = document.getElementById('del'+i);
+    if (mine) mine.disabled = true;
+    if (del) del.disabled = true;
+  });
+  document.querySelectorAll('.record').forEach(b => b.textContent = '● Aufnehmen');
+  document.getElementById('status').textContent =
+    'Alle eigenen Aufnahmen wurden gelöscht. Die Lektion ist bereit für einen neuen Durchgang.';
+}
+
+// Ask for microphone permission once when the user first clicks anywhere on the trainer.
+document.addEventListener('DOMContentLoaded', () => {
+  document.getElementById('status').textContent =
+    'Beim ersten Klick auf „Aufnehmen“ bitte einmal den Mikrofonzugriff erlauben. Danach bleibt das Mikrofon für diese Sitzung aktiv.';
+});
+</script></body></html>
