@@ -16,12 +16,12 @@ main{max-width:850px;margin:0 auto;padding:32px 20px 48px}header{margin-bottom:2
 <a class="back" href="../../index.html">← Zur Übersicht</a>
 <div class="eyebrow">Hörkurs und Kulturgeschichten · Lektion 01 · Teil 2</div>
 <h1>Non solo panettone e pandoro</h1>
-<p>Höre den italienischen Satz, sprich ihn nach und vergleiche deine Aufnahme.</p>
+<p>Höre die ElevenLabs-Aufnahmen, sprich die Vokabeln nach und vergleiche deine Aufnahme.</p>
 
 </header>
 
 <section aria-label="Kulturgeschichte"><h2>Kulturgeschichte · 25 Sätze</h2><div id="story"></div></section>
-<section aria-label="Vokabeln"><h2>Vokabeln · 16 Einträge</h2><div id="vocab"></div><h2>ElevenLabs · Vokabelaufnahmen</h2><article class="card" aria-label="Vokabelaufnahme 1"><div class="num">VOKABELAUFNAHME 1 · 13,6 SEK.</div><audio controls preload="metadata" src="ElevenLabs_Vokabeln_1.mp3" aria-label="Vokabelaufnahme 1"></audio></article><article class="card" aria-label="Vokabelaufnahme 2"><div class="num">VOKABELAUFNAHME 2 · 10,4 SEK.</div><audio controls preload="metadata" src="ElevenLabs_Vokabeln_2.mp3" aria-label="Vokabelaufnahme 2"></audio></article></section>
+<section aria-label="Vokabeln"><h2>ElevenLabs · Vokabelaufnahmen</h2><article class="card" aria-label="ElevenLabs-Vokabelteil 1"><div class="num">VOKABELTEIL 1 · 13,6 SEK.</div><audio controls preload="metadata" src="ElevenLabs_Vokabeln_1.mp3" aria-label="ElevenLabs-Vokabelteil 1"></audio></article><article class="card" aria-label="ElevenLabs-Vokabelteil 2"><div class="num">VOKABELTEIL 2 · 10,4 SEK.</div><audio controls preload="metadata" src="ElevenLabs_Vokabeln_2.mp3" aria-label="ElevenLabs-Vokabelteil 2"></audio></article><h2>Vokabeleinträge · 16 Wörter</h2><p class="note">Die Wörter 1–8 gehören zu Teil 1, die Wörter 9–16 zu Teil 2. „ElevenLabs Teil anhören“ startet jeweils die passende Originalaufnahme.</p><div id="vocab"></div></section>
 <p class="note">Deine eigenen Aufnahmen werden in diesem Browser gespeichert. Die Aufnahme bleibt auf dieser Lektion getrennt von anderen Lektionen.</p>
 </main>
 <script>
@@ -44,10 +44,11 @@ function stopPlayback(){if('speechSynthesis'in window)speechSynthesis.cancel();i
 function makeCard(item,kind,n){
  const id=(kind==='SATZ'?'story-':'vocab-')+String(n).padStart(2,'0');
  const card=document.createElement('article');card.className='card';card.dataset.id=id;
- card.innerHTML='<div class="num">'+kind+' '+String(n).padStart(2,'0')+'</div><div class="it"></div><p class="de"></p><div class="actions"><button class="primary listen">▶ Anhören</button><button class="record">● Aufnehmen</button><button class="mine">▶ Meine Aufnahme</button><button class="delete">Löschen</button></div><div class="status" aria-live="polite"></div>';
+ card.innerHTML='<div class="num">'+kind+' '+String(n).padStart(2,'0')+'</div><div class="it"></div><p class="de"></p><div class="actions"><button class="primary listen"></button><button class="record">● Aufnehmen</button><button class="mine">▶ Meine Aufnahme</button><button class="delete">Löschen</button></div><div class="status" aria-live="polite"></div>';
  card.querySelector('.it').textContent=item[0];card.querySelector('.de').textContent=item[1];
+ const button=card.querySelector('.listen');
  if(kind==='SATZ'){
-  const button=card.querySelector('.listen');button.textContent='▶ Anhören';
+  button.textContent='▶ Anhören';
   button.addEventListener('click',async()=>{
    stopPlayback();document.querySelectorAll('#story .status').forEach(el=>{el.textContent=''});
    const audio=new Audio('Satz_'+String(n).padStart(2,'0')+'.mp3');activeStoryAudio=audio;
@@ -57,17 +58,14 @@ function makeCard(item,kind,n){
    try{await audio.play()}catch(error){if(activeStoryAudio===audio)activeStoryAudio=null;setStatus(card,'Wiedergabe fehlgeschlagen: '+(error?.message||'Audiofehler'))}
   });
  }else{
-  card.querySelector('.listen').textContent='🔊 Browserstimme';
-  card.querySelector('.listen').addEventListener('click',()=>{
-  stopPlayback();
-  if(!('speechSynthesis'in window)){setStatus(card,'Vorlesen wird von diesem Browser nicht unterstützt.');return}
-  const u=new SpeechSynthesisUtterance(item[0]),voices=speechSynthesis.getVoices();
-  const voice=voices.find(v=>/^it(-|$)/i.test(v.lang));
-  u.lang=voice?voice.lang:'it-IT';if(voice)u.voice=voice;
-  u.onend=()=>setStatus(card,'Vorlesen beendet.');
-  u.onerror=e=>setStatus(card,'Vorlesen fehlgeschlagen: '+(e.error||'unbekannter Fehler'));
-  setStatus(card,voice?'Italienische Browserstimme läuft …':'Browserstimme läuft … (keine italienische Stimme erkannt)');
-  speechSynthesis.speak(u);
+  const part=n<=8?1:2;button.textContent='▶ ElevenLabs Teil '+part;
+  button.addEventListener('click',async()=>{
+   stopPlayback();document.querySelectorAll('#vocab .status').forEach(el=>{el.textContent=''});
+   const audio=new Audio('ElevenLabs_Vokabeln_'+part+'.mp3');activeStoryAudio=audio;
+   audio.addEventListener('ended',()=>{if(activeStoryAudio===audio)activeStoryAudio=null;setStatus(card,'ElevenLabs-Vokabelteil '+part+' beendet.')});
+   audio.addEventListener('error',()=>{if(activeStoryAudio===audio)activeStoryAudio=null;setStatus(card,'ElevenLabs-Aufnahme konnte nicht geladen werden.')});
+   setStatus(card,'ElevenLabs-Vokabelteil '+part+' läuft …');
+   try{await audio.play()}catch(error){if(activeStoryAudio===audio)activeStoryAudio=null;setStatus(card,'Wiedergabe fehlgeschlagen: '+(error?.message||'Audiofehler'))}
   });
  }
  card.querySelector('.mine').addEventListener('click',async()=>{
