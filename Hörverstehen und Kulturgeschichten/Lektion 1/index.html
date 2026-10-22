@@ -123,7 +123,6 @@ document.querySelectorAll('.card').forEach(card=>{
    status(card,message+' Fehlercode: '+n+(e?.message?' – '+e.message:''));
   }
  });
- });
 });
 document.getElementById('clearAll').addEventListener('click',async()=>{if(confirm('Alle eigenen Aufnahmen dieser Lektion löschen?')){if(recorder&&recorder.state==='recording')recorder.stop();await clear();document.querySelectorAll('.status').forEach(s=>s.textContent='');alert('Alle eigenen Aufnahmen wurden gelöscht.')}});
 </script>
