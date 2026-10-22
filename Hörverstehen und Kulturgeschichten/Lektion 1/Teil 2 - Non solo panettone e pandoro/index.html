@@ -8,7 +8,7 @@
 :root{color-scheme:light;--ink:#182126;--muted:#657178;--line:#e2e7e8;--paper:#f5f7f6;--green:#176b56;--gold:#bd8a34}
 *{box-sizing:border-box}body{margin:0;background:var(--paper);color:var(--ink);font:16px/1.5 system-ui,-apple-system,BlinkMacSystemFont,"Segoe UI",sans-serif}
 main{max-width:900px;margin:0 auto;padding:28px 18px 48px}header{margin-bottom:24px}.eyebrow{color:var(--green);font-size:.78rem;font-weight:750;letter-spacing:.1em;text-transform:uppercase}h1{font-size:clamp(1.7rem,4vw,2.4rem);line-height:1.15;margin:.35rem 0 .55rem}h2{font-size:1.35rem;margin:30px 0 12px}header p,.note{color:var(--muted)}.back{display:inline-block;color:var(--green);font-weight:650;margin-bottom:16px;text-decoration:none}.notice{background:#fff8e9;border:1px solid #eee0bd;border-radius:12px;padding:12px 15px;color:#69552f;font-size:.88rem;margin:16px 0}
-.card{background:white;border:1px solid var(--line);border-radius:15px;padding:18px;margin:12px 0;box-shadow:0 3px 12px #18212608}.num{font-size:.76rem;font-weight:750;color:var(--gold);letter-spacing:.07em}.it{font-size:1.1rem;font-weight:650;margin:.4rem 0 .2rem}.de{color:var(--muted);margin:0 0 14px}.actions{display:flex;gap:8px;flex-wrap:wrap}button{appearance:none;border:1px solid var(--line);background:white;color:var(--ink);border-radius:10px;padding:8px 12px;font:600 .9rem system-ui;cursor:pointer}button:hover{border-color:#9db4aa;background:#f8fbf9}button.primary{background:var(--green);border-color:var(--green);color:white}button.recording{background:#a93232;border-color:#a93232;color:white}button:disabled{opacity:.5;cursor:not-allowed}.status{min-height:1.3em;margin:8px 0 0;font-size:.83rem;color:var(--muted)}.note{font-size:.86rem;margin:18px 0 0}
+.card{background:white;border:1px solid var(--line);border-radius:15px;padding:18px;margin:12px 0;box-shadow:0 3px 12px #18212608}.num{font-size:.76rem;font-weight:750;color:var(--gold);letter-spacing:.07em}.it{font-size:1.1rem;font-weight:650;margin:.4rem 0 .2rem}.de{color:var(--muted);margin:0 0 14px}.actions{display:flex;gap:8px;flex-wrap:wrap}.sentence-actions{display:flex;gap:8px;flex-wrap:wrap;margin:10px 0 14px}.sentence-actions button{font-size:.84rem}button{appearance:none;border:1px solid var(--line);background:white;color:var(--ink);border-radius:10px;padding:8px 12px;font:600 .9rem system-ui;cursor:pointer}button:hover{border-color:#9db4aa;background:#f8fbf9}button.primary{background:var(--green);border-color:var(--green);color:white}button.recording{background:#a93232;border-color:#a93232;color:white}button:disabled{opacity:.5;cursor:not-allowed}.status{min-height:1.3em;margin:8px 0 0;font-size:.83rem;color:var(--muted)}.note{font-size:.86rem;margin:18px 0 0}
 audio{display:block;width:100%;margin-top:10px}.audio-card .de{margin-bottom:8px}</style>
 </head>
 <body><main>
@@ -33,6 +33,25 @@ const story=[["In Italia, il Natale è una festa che non si celebra solo con i r
 const vocab=[["in anticipo","im Voraus"],["la prelibatezza","die Delikatesse"],["friabile","mürb"],["affondare le radici","Wurzeln schlagen"],["il pane raffermo","das altbackene Brot"],["la scorza","die Schale"],["la pasta frolla","der Mürbeteig"],["l’albume","das Eiweiss"],["addirittura","sogar"],["il chiodo di garofano","die Gewürznelke"],["il cioccolato fondente","die Zartbitterschokolade"],["la patria","das Vaterland"],["il pasticciere","der Konditor"],["lievitato","aufgegangen"],["mettersi all’opera","sich an die Arbeit machen"],["è (molto) comune","es ist (sehr) üblich"]];
 
 const storyAudioParts=Array.from({length:29},(_,i)=>'audio/geschichte/part-'+String(i+1).padStart(4,'0')+'.bin');
+const storySentenceBoundaries=[10.66135,19.79095,25.08265,28.41835,33.3433,40.32235,44.1228,51.29455,57.4322,65.701,68.28815,76.054,89.47815,96.81655,100.581,108.0875,111.0085,117.458,127.489,129.013,134.769,145.387,158.0575,170.783,177.591,189.4285,204.7635,207.6685,215.4705,226.276,233.961,244.567,261.969,270.7905,275.69,286.3895,293.7365,309.6905,323.465,326.928,342.423,359.806,370.554,377.0925,385.854,391.742,397.1175];
+const storySentenceDuration=404.11425;
+function splitItalianSentences(text){
+ const parts=[...new Intl.Segmenter('it',{granularity:'sentence'}).segment(text)].map(x=>x.segment.trim()).filter(Boolean);
+ if(text.includes('Il panforte (non “pianoforte”!) è un dolce')&&parts.length===3)parts.splice(1,2,parts[1]+' '+parts[2]);
+ return parts;
+}
+const allStorySentences=story.flatMap(([it])=>splitItalianSentences(it));
+const sentenceRanges=storySentenceBoundaries.map((end,i)=>[i?storySentenceBoundaries[i-1]:0,end]);
+sentenceRanges.push([storySentenceBoundaries.at(-1),storySentenceDuration]);
+if(allStorySentences.length!==sentenceRanges.length)console.error('Satzanzahl und ElevenLabs-Ausschnitte stimmen nicht überein.',allStorySentences.length,sentenceRanges.length);
+let activeStoryRange=null;
+const storyPlayer=document.getElementById('story-audio');
+storyPlayer.addEventListener('timeupdate',()=>{
+ if(activeStoryRange&&storyPlayer.currentTime>=activeStoryRange.end){
+  storyPlayer.pause();activeStoryRange.card.querySelector('.status').textContent='ElevenLabs-Satz beendet.';activeStoryRange=null;
+ }
+});
+
 let storyAudioUrl=null;
 async function loadElevenLabsStory(){
  const status=document.getElementById('story-audio-status'),player=document.getElementById('story-audio');
@@ -49,15 +68,44 @@ function db(){if(!dbPromise)dbPromise=new Promise((resolve,reject)=>{const r=ind
 async function put(item){const d=await db();return new Promise((resolve,reject)=>{const tx=d.transaction(STORE,'readwrite');tx.objectStore(STORE).put(item);tx.oncomplete=resolve;tx.onerror=()=>reject(tx.error)})}
 async function get(id){const d=await db();return new Promise((resolve,reject)=>{const r=d.transaction(STORE).objectStore(STORE).get(id);r.onsuccess=()=>resolve(r.result);r.onerror=()=>reject(r.error)})}
 async function remove(id){const d=await db();return new Promise((resolve,reject)=>{const tx=d.transaction(STORE,'readwrite');tx.objectStore(STORE).delete(id);tx.oncomplete=resolve;tx.onerror=()=>reject(tx.error)})}
-let recorder=null,activeStream=null,activeCard=null,starting=false,saving=false,playAudio=null,audioUrl=null;
+let recorder=null,activeStream=null,activeCard=null,starting=false,saving=false,playAudio=null,audioUrl=null,storySentenceCounter=0;
 function setStatus(card,msg){card.querySelector('.status').textContent=msg}
 function stopPlayback(){if('speechSynthesis'in window)speechSynthesis.cancel();if(playAudio){playAudio.pause();playAudio=null}if(audioUrl){URL.revokeObjectURL(audioUrl);audioUrl=null}}
 function makeCard(item,kind,n){
  const id=(kind==='SATZ'?'story-':'vocab-')+String(n).padStart(2,'0');
  const card=document.createElement('article');card.className='card';card.dataset.id=id;
- card.innerHTML='<div class="num">'+kind+' '+String(n).padStart(2,'0')+'</div><div class="it"></div><p class="de"></p><div class="actions"><button class="primary listen">🔊 Browserstimme</button><button class="record">● Aufnehmen</button><button class="mine">▶ Meine Aufnahme</button><button class="delete">Löschen</button></div><div class="status" aria-live="polite"></div>';
+ card.innerHTML='<div class="num">'+kind+' '+String(n).padStart(2,'0')+'</div><div class="it"></div><p class="de"></p><div class="sentence-actions"></div><div class="actions"><button class="primary listen">🔊 Browserstimme</button><button class="record">● Aufnehmen</button><button class="mine">▶ Meine Aufnahme</button><button class="delete">Löschen</button></div><div class="status" aria-live="polite"></div>';
  card.querySelector('.it').textContent=item[0];card.querySelector('.de').textContent=item[1];
- card.querySelector('.listen').addEventListener('click',()=>{
+ if(kind==='SATZ'){
+  card.querySelector('.listen').remove();
+  const sentenceActions=card.querySelector('.sentence-actions');
+  for(const sentence of splitItalianSentences(item[0])){
+   const sentenceNumber=++storySentenceCounter,range=sentenceRanges[sentenceNumber-1],button=document.createElement('button');
+   button.className='primary';button.type='button';button.textContent='🔊 ElevenLabs · Satz '+sentenceNumber;
+   button.setAttribute('aria-label','ElevenLabs-Aufnahme: '+sentence);
+   button.addEventListener('click',async()=>{
+    const player=document.getElementById('story-audio');
+    if(!player.src||player.readyState<1){setStatus(card,'ElevenLabs-Aufnahme wird noch geladen.');return}
+    player.pause();activeStoryRange=null;
+    const [start,end]=range;
+    try{
+     if(Math.abs(player.currentTime-start)>.05){
+      await new Promise((resolve,reject)=>{
+       const timer=setTimeout(()=>reject(new Error('Audioausschnitt konnte nicht angesteuert werden.')),5000);
+       player.addEventListener('seeked',()=>{clearTimeout(timer);resolve()},{once:true});
+       player.currentTime=start;
+      });
+     }
+     activeStoryRange={end,card};
+     setStatus(card,'ElevenLabs-Satz '+sentenceNumber+' läuft …');
+     await player.play();
+    }catch(error){activeStoryRange=null;setStatus(card,'Wiedergabe fehlgeschlagen: '+(error?.message||'Audiofehler'))}
+   });
+   sentenceActions.appendChild(button);
+  }
+ }else{
+  card.querySelector('.sentence-actions').remove();
+  card.querySelector('.listen').addEventListener('click',()=>{
   stopPlayback();
   if(!('speechSynthesis'in window)){setStatus(card,'Vorlesen wird von diesem Browser nicht unterstützt.');return}
   const u=new SpeechSynthesisUtterance(item[0]),voices=speechSynthesis.getVoices();
@@ -67,7 +115,8 @@ function makeCard(item,kind,n){
   u.onerror=e=>setStatus(card,'Vorlesen fehlgeschlagen: '+(e.error||'unbekannter Fehler'));
   setStatus(card,voice?'Italienische Browserstimme läuft …':'Browserstimme läuft … (keine italienische Stimme erkannt)');
   speechSynthesis.speak(u);
- });
+  });
+ }
  card.querySelector('.mine').addEventListener('click',async()=>{
   stopPlayback();
   try{const item=await get(id);if(!item||!item.blob){setStatus(card,'Noch keine eigene Aufnahme vorhanden.');return}
@@ -119,6 +168,7 @@ function makeCard(item,kind,n){
  return card;
 }
 story.forEach((item,i)=>document.getElementById('story').appendChild(makeCard(item,'SATZ',i+1)));
+if(allStorySentences.length!==48)console.error('Unerwartete Zahl italienischer Sätze:',allStorySentences.length);
 vocab.forEach((item,i)=>document.getElementById('vocab').appendChild(makeCard(item,'VOKABEL',i+1)));
 window.addEventListener('pagehide',()=>{if(recorder&&recorder.state==='recording')recorder.stop();if(activeStream)activeStream.getTracks().forEach(t=>t.stop());stopPlayback();if(storyAudioUrl)URL.revokeObjectURL(storyAudioUrl)});
 </script>
