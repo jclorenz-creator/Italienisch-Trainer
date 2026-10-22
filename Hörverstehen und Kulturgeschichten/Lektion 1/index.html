@@ -60,6 +60,7 @@ async function get(id){const d=await db();return new Promise((resolve,reject)=>{
 async function remove(id){const d=await db();return new Promise((resolve,reject)=>{const tx=d.transaction(STORE,'readwrite');tx.objectStore(STORE).delete(id);tx.oncomplete=resolve;tx.onerror=()=>reject(tx.error)})}
 async function clear(){const d=await db();return new Promise((resolve,reject)=>{const tx=d.transaction(STORE,'readwrite');tx.objectStore(STORE).clear();tx.oncomplete=resolve;tx.onerror=()=>reject(tx.error)})}
 let activeAudio=null, recorder=null, stream=null, chunks=[], activeId=null, userAudioUrl=null;
+let recordingPending=false;
 function status(card,msg){card.querySelector('.status').textContent=msg}
 function stopAudio(){if(activeAudio){activeAudio.pause();activeAudio.currentTime=0;activeAudio=null}if(userAudioUrl){URL.revokeObjectURL(userAudioUrl);userAudioUrl=null}}
 document.querySelectorAll('.card').forEach(card=>{
@@ -68,14 +69,60 @@ document.querySelectorAll('.card').forEach(card=>{
  card.querySelector('.mine').addEventListener('click',async()=>{stopAudio();try{const item=await get(id);if(!item){status(card,'Noch keine eigene Aufnahme vorhanden.');return}userAudioUrl=URL.createObjectURL(item.blob);activeAudio=new Audio(userAudioUrl);await activeAudio.play();status(card,'Deine Aufnahme läuft …');activeAudio.onended=()=>{status(card,'Deine Aufnahme beendet.');activeAudio=null}}catch(e){const n=e?.name||'Unbekannter Fehler';const m=e?.message||'keine Detailmeldung';status(card,'Wiedergabe fehlgeschlagen. Fehlercode: '+n+' – '+m)}});
  card.querySelector('.delete').addEventListener('click',async()=>{await remove(id);status(card,'Eigene Aufnahme gelöscht.')});
  card.querySelector('.record').addEventListener('click',async ev=>{
-  if(recorder&&recorder.state==='recording'){recorder.stop();return}
+  const button=ev.currentTarget;
+  if(recordingPending)return;
+  if(recorder&&recorder.state==='recording'){
+   recordingPending=true;
+   status(card,'Aufnahme wird gespeichert …');
+   document.querySelectorAll('.record').forEach(b=>b.disabled=true);
+   recorder.stop();
+   return;
+  }
   if(!navigator.mediaDevices?.getUserMedia||!window.MediaRecorder){status(card,'Aufnehmen wird von diesem Browser nicht unterstützt.');return}
+  recordingPending=true;
+  status(card,'Mikrofon wird gestartet …');
+  button.disabled=true;
   try{
-   stream=await navigator.mediaDevices.getUserMedia({audio:true});chunks=[];activeId=id;recorder=new MediaRecorder(stream);
-   recorder.ondataavailable=e=>{if(e.data.size)chunks.push(e.data)};
-   recorder.onstop=async()=>{const currentRecorder=recorder;try{const mime=currentRecorder?.mimeType||chunks.find(c=>c.type)?.type||'audio/webm';const blob=new Blob(chunks,{type:mime});if(!blob.size)throw new Error('Es wurden keine Audiodaten aufgenommen.');await put({id:activeId,blob,savedAt:Date.now()});status(card,'Aufnahme gespeichert.');}catch(e){status(card,'Aufnahme beendet, aber nicht gespeichert: '+(e?.message||e?.name||'Speicherfehler'));}finally{if(stream)stream.getTracks().forEach(t=>t.stop());stream=null;document.querySelectorAll('.record').forEach(b=>{b.textContent='● Aufnehmen';b.classList.remove('recording')});recorder=null}};
-   recorder.start();ev.currentTarget.textContent='■ Aufnahme stoppen';ev.currentTarget.classList.add('recording');status(card,'Aufnahme läuft – sprich jetzt.');
-  }catch(e){if(stream){stream.getTracks().forEach(t=>t.stop());stream=null}recorder=null;ev.currentTarget.textContent='● Aufnehmen';ev.currentTarget.classList.remove('recording');const n=e?.name||'Unbekannter Fehler';let message;if(n==='NotAllowedError'||n==='PermissionDeniedError'||n==='SecurityError')message='Chrome oder macOS verweigert den Mikrofonzugriff.';else if(n==='NotFoundError'||n==='DevicesNotFoundError')message='Chrome findet kein verfügbares Mikrofon. Prüfe Systemeinstellungen → Ton → Eingabe.';else if(n==='NotReadableError'||n==='TrackStartError')message='Das Mikrofon ist belegt oder kann gerade nicht gestartet werden. Schließe andere Apps, die es verwenden.';else if(n==='NotSupportedError')message='Der Browser unterstützt das Aufnahmeformat nicht.';else message='Die Aufnahme konnte nicht gestartet werden.';status(card,message+' Fehlercode: '+n+(e?.message?' – '+e.message:''));}
+   stream=await navigator.mediaDevices.getUserMedia({audio:true});
+   chunks=[];activeId=id;recorder=new MediaRecorder(stream);
+   const currentRecorder=recorder;
+   currentRecorder.ondataavailable=e=>{if(e.data.size)chunks.push(e.data)};
+   currentRecorder.onstop=async()=>{
+    try{
+     const mime=currentRecorder.mimeType||chunks.find(c=>c.type)?.type||'audio/webm';
+     const blob=new Blob(chunks,{type:mime});
+     if(!blob.size)throw new Error('Es wurden keine Audiodaten aufgenommen.');
+     await put({id:activeId,blob,savedAt:Date.now()});
+     status(card,'Aufnahme gespeichert.');
+    }catch(e){status(card,'Aufnahme beendet, aber nicht gespeichert: '+(e?.message||e?.name||'Speicherfehler'))}
+    finally{
+     if(stream)stream.getTracks().forEach(t=>t.stop());
+     stream=null;
+     document.querySelectorAll('.record').forEach(b=>{b.textContent='● Aufnehmen';b.classList.remove('recording');b.disabled=false});
+     recorder=null;
+     recordingPending=false;
+    }
+   };
+   currentRecorder.start();
+   button.disabled=false;
+   button.textContent='■ Aufnahme stoppen';
+   button.classList.add('recording');
+   status(card,'Aufnahme läuft – sprich jetzt und klicke danach auf „Aufnahme stoppen“.');
+   recordingPending=false;
+  }catch(e){
+   if(stream){stream.getTracks().forEach(t=>t.stop());stream=null}
+   recorder=null;recordingPending=false;
+   button.disabled=false;button.textContent='● Aufnehmen';button.classList.remove('recording');
+   const n=e?.name||'Unbekannter Fehler';
+   let message;
+   if(n==='NotAllowedError'||n==='PermissionDeniedError'||n==='SecurityError')message='Chrome oder macOS verweigert den Mikrofonzugriff.';
+   else if(n==='NotFoundError'||n==='DevicesNotFoundError')message='Chrome findet kein verfügbares Mikrofon. Prüfe Systemeinstellungen → Ton → Eingabe.';
+   else if(n==='NotReadableError'||n==='TrackStartError')message='Das Mikrofon ist belegt oder kann gerade nicht gestartet werden. Schließe andere Apps, die es verwenden.';
+   else if(n==='NotSupportedError')message='Der Browser unterstützt das Aufnahmeformat nicht.';
+   else message='Die Aufnahme konnte nicht gestartet werden.';
+   status(card,message+' Fehlercode: '+n+(e?.message?' – '+e.message:''));
+  }
+ });
  });
 });
 document.getElementById('clearAll').addEventListener('click',async()=>{if(confirm('Alle eigenen Aufnahmen dieser Lektion löschen?')){if(recorder&&recorder.state==='recording')recorder.stop();await clear();document.querySelectorAll('.status').forEach(s=>s.textContent='');alert('Alle eigenen Aufnahmen wurden gelöscht.')}});
