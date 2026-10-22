@@ -21,7 +21,7 @@ main{max-width:850px;margin:0 auto;padding:32px 20px 48px}header{margin-bottom:2
 </header>
 
 <section aria-label="Kulturgeschichte"><h2>Kulturgeschichte · 25 Sätze</h2><div id="story"></div></section>
-<section aria-label="Vokabeln"><h2>ElevenLabs · Vokabelaufnahmen</h2><article class="card" aria-label="ElevenLabs-Vokabelteil 1"><div class="num">VOKABELTEIL 1 · 13,6 SEK.</div><audio controls preload="metadata" src="ElevenLabs_Vokabeln_1.mp3" aria-label="ElevenLabs-Vokabelteil 1"></audio></article><article class="card" aria-label="ElevenLabs-Vokabelteil 2"><div class="num">VOKABELTEIL 2 · 10,4 SEK.</div><audio controls preload="metadata" src="ElevenLabs_Vokabeln_2.mp3" aria-label="ElevenLabs-Vokabelteil 2"></audio></article><h2>Vokabeleinträge · 16 Wörter</h2><p class="note">Die Wörter 1–8 gehören zu Teil 1, die Wörter 9–16 zu Teil 2. „ElevenLabs Teil anhören“ startet jeweils die passende Originalaufnahme.</p><div id="vocab"></div></section>
+<section aria-label="Vokabeln"><h2>ElevenLabs · Vokabelaufnahmen</h2><article class="card" aria-label="ElevenLabs-Vokabelteil 1"><div class="num">VOKABELTEIL 1 · 13,6 SEK.</div><audio controls preload="metadata" src="ElevenLabs_Vokabeln_1.mp3" aria-label="ElevenLabs-Vokabelteil 1"></audio></article><article class="card" aria-label="ElevenLabs-Vokabelteil 2"><div class="num">VOKABELTEIL 2 · 10,4 SEK.</div><audio controls preload="metadata" src="ElevenLabs_Vokabeln_2.mp3" aria-label="ElevenLabs-Vokabelteil 2"></audio></article><h2>Vokabeleinträge · 16 Wörter</h2><p class="note">Die beiden ElevenLabs-Aufnahmen enthalten jeweils mehrere Vokabeln und lassen sich oben als vollständige Teile anhören. Die Wortkarten darunter sind für deine eigenen Aufnahmen.</p><div id="vocab"></div></section>
 <p class="note">Deine eigenen Aufnahmen werden in diesem Browser gespeichert. Die Aufnahme bleibt auf dieser Lektion getrennt von anderen Lektionen.</p>
 </main>
 <script>
@@ -44,7 +44,7 @@ function stopPlayback(){if('speechSynthesis'in window)speechSynthesis.cancel();i
 function makeCard(item,kind,n){
  const id=(kind==='SATZ'?'story-':'vocab-')+String(n).padStart(2,'0');
  const card=document.createElement('article');card.className='card';card.dataset.id=id;
- card.innerHTML='<div class="num">'+kind+' '+String(n).padStart(2,'0')+'</div><div class="it"></div><p class="de"></p><div class="actions"><button class="primary listen"></button><button class="record">● Aufnehmen</button><button class="mine">▶ Meine Aufnahme</button><button class="delete">Löschen</button></div><div class="status" aria-live="polite"></div>';
+ card.innerHTML='<div class="num">'+kind+' '+String(n).padStart(2,'0')+'</div><div class="it"></div><p class="de"></p><div class="actions">'+(kind==='SATZ'?'<button class="primary listen">▶ Anhören</button>':'')+'<button class="record">● Aufnehmen</button><button class="mine">▶ Meine Aufnahme</button><button class="delete">Löschen</button></div><div class="status" aria-live="polite"></div>';
  card.querySelector('.it').textContent=item[0];card.querySelector('.de').textContent=item[1];
  const button=card.querySelector('.listen');
  if(kind==='SATZ'){
@@ -55,16 +55,6 @@ function makeCard(item,kind,n){
    audio.addEventListener('ended',()=>{if(activeStoryAudio===audio)activeStoryAudio=null;setStatus(card,'ElevenLabs-Aufnahme beendet.')});
    audio.addEventListener('error',()=>{if(activeStoryAudio===audio)activeStoryAudio=null;setStatus(card,'MP3-Datei konnte nicht geladen werden.')});
    setStatus(card,'ElevenLabs-Aufnahme läuft …');
-   try{await audio.play()}catch(error){if(activeStoryAudio===audio)activeStoryAudio=null;setStatus(card,'Wiedergabe fehlgeschlagen: '+(error?.message||'Audiofehler'))}
-  });
- }else{
-  const part=n<=8?1:2;button.textContent='▶ ElevenLabs Teil '+part;
-  button.addEventListener('click',async()=>{
-   stopPlayback();document.querySelectorAll('#vocab .status').forEach(el=>{el.textContent=''});
-   const audio=new Audio('ElevenLabs_Vokabeln_'+part+'.mp3');activeStoryAudio=audio;
-   audio.addEventListener('ended',()=>{if(activeStoryAudio===audio)activeStoryAudio=null;setStatus(card,'ElevenLabs-Vokabelteil '+part+' beendet.')});
-   audio.addEventListener('error',()=>{if(activeStoryAudio===audio)activeStoryAudio=null;setStatus(card,'ElevenLabs-Aufnahme konnte nicht geladen werden.')});
-   setStatus(card,'ElevenLabs-Vokabelteil '+part+' läuft …');
    try{await audio.play()}catch(error){if(activeStoryAudio===audio)activeStoryAudio=null;setStatus(card,'Wiedergabe fehlgeschlagen: '+(error?.message||'Audiofehler'))}
   });
  }
