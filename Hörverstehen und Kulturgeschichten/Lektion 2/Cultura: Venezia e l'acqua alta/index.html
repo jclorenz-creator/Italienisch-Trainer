@@ -1,0 +1,73 @@
+<!doctype html>
+<html lang="de-CH">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Cultura: Venezia e l'acqua alta</title>
+<style>
+:root{color-scheme:light;--ink:#182126;--muted:#657178;--line:#e2e7e8;--paper:#f5f7f6;--green:#176b56;--gold:#bd8a34}
+*{box-sizing:border-box}body{margin:0;background:var(--paper);color:var(--ink);font:16px/1.5 system-ui,-apple-system,BlinkMacSystemFont,"Segoe UI",sans-serif}
+main{max-width:850px;margin:0 auto;padding:32px 20px 48px}header{margin-bottom:24px}.back{color:var(--green);text-decoration:none;font-weight:650}.eyebrow{color:var(--green);font-size:.78rem;font-weight:750;letter-spacing:.1em;text-transform:uppercase}h1{font-size:clamp(1.7rem,4vw,2.4rem);line-height:1.15;margin:.35rem 0 .55rem}header p{color:var(--muted);margin:0}.card{background:white;border:1px solid var(--line);border-radius:16px;padding:20px;margin:14px 0;box-shadow:0 3px 12px #18212608}.num{font-size:.78rem;font-weight:750;color:var(--gold);letter-spacing:.07em}.it{font-size:1.15rem;font-weight:650;margin:.4rem 0 .2rem}.de{color:var(--muted);margin:0 0 16px}.actions{display:flex;gap:8px;flex-wrap:wrap}button{appearance:none;border:1px solid var(--line);background:white;color:var(--ink);border-radius:10px;padding:9px 13px;font:600 .92rem system-ui;cursor:pointer}button:hover{border-color:#9db4aa;background:#f8fbf9}button.primary{background:var(--green);border-color:var(--green);color:white}button.primary:hover{background:#105540}button.recording{background:#a93232;border-color:#a93232;color:white}button:disabled{opacity:.5;cursor:not-allowed}.status{min-height:1.3em;margin:9px 0 0;font-size:.83rem;color:var(--muted)}.note{font-size:.86rem;color:var(--muted);margin:18px 0 0}h2{margin-top:30px}
+</style>
+</head>
+<body><main>
+<header>
+<a class="back" href="../index.html">← Zur Übersicht Lektion 2</a>
+<div class="eyebrow">Hörverstehen und Kulturgeschichten · Lektion 2</div>
+<h1>Cultura: Venezia e l'acqua alta</h1>
+<p>Höre die italienischen Sätze und Vokabeln einzeln an, sprich sie nach und vergleiche deine Aufnahme.</p>
+</header>
+<section aria-label="Kulturgeschichte"><h2>Kulturgeschichte · 10 Sätze</h2><div id="story"></div></section>
+<section aria-label="Vokabeln"><h2>Vokabeln · 27 Wörter</h2><div id="vocab"></div></section>
+<p class="note">Deine eigenen Aufnahmen werden in diesem Browser gespeichert. Die Aufnahmen dieser Lektion bleiben von anderen Lektionen getrennt.</p>
+</main>
+<script>
+'use strict';
+const story=[["Tutti conoscono la bellissima città di Venezia, unica e particolare con i suoi canali, le isole e i ponti, ma c'è un fenomeno naturale che si verifica in questa città che non tutti conoscono: l'acqua alta!", "Alle kennen die wunderschöne Stadt Venedig, einzigartig und besonders mit ihren Kanälen, Inseln und Brücken. Doch es gibt ein Naturphänomen, das in dieser Stadt auftritt und nicht allen bekannt ist: das Hochwasser!"], ["L'acqua alta è un fenomeno naturale, comune e temporaneo ..., che da sempre fa parte della vita degli abitanti di Venezia e si verifica quando il livello del mare si alza a tal punto da invadere alcune zone della città e causando inondazioni temporanee.", "Das Hochwasser ist ein natürliches, gewöhnliches und vorübergehendes Phänomen. Es gehört seit jeher zum Leben der Einwohner Venedigs. Es tritt auf, wenn der Meeresspiegel so stark ansteigt, dass er einige Bereiche der Stadt überflutet und zeitweilige Überschwemmungen verursacht."], ["Questo fenomeno è causato da:", "Dieses Phänomen wird verursacht durch:"], ["Maree: a Venezia, le maree possono far aumentare il livello del mare..., portando all'acqua alta.", "Die Gezeiten: In Venedig können die Gezeiten den Meeresspiegel ansteigen lassen und so zum Hochwasser führen."], ["Stato del Mare Adriatico: il meteo può influenzare il livello del mare, soprattutto in presenza di forti venti o tempeste.", "Der Zustand der Adria: Das Wetter kann den Meeresspiegel beeinflussen, besonders bei starken Winden oder Stürmen."], ["Geografia: Venezia, con la sua posizione nella laguna, è particolarmente esposta ai cambiamenti del livello del mare.", "Die Geografie: Durch seine Lage in der Lagune ist Venedig besonders den Veränderungen des Meeresspiegels ausgesetzt."], ["L'acqua alta è spesso il risultato del mix di diverse cose, come alta marea e meteo avverso, che accadono nello stesso momento.", "Das Hochwasser ist oft das Ergebnis verschiedener Faktoren, die gleichzeitig auftreten, etwa einer hohen Flut und ungünstigen Wetterbedingungen."], ["Per affrontare il problema dell'acqua alta, Venezia ha trovato alcune soluzioni.", "Um dem Problem des Hochwassers zu begegnen, hat Venedig einige Lösungen gefunden:"], ["Le passerelle pedonali: quando l'acqua arriva nelle strade e nelle piazze, vengono posizionate delle passerelle su cui le persone possono camminare.", "Die Fußgängerstege: Wenn das Wasser in die Straßen und auf die Plätze gelangt, werden Stege aufgestellt, über die die Menschen gehen können."], ["Il MOSE: un sistema di barriere mobili per difendere la città di Venezia e della sua laguna dal fenomeno dell'acqua alta.", "Das MOSE: ein System beweglicher Barrieren, das die Stadt Venedig und ihre Lagune vor dem Hochwasser schützen soll."]];
+const vocab=[["l'acqua alta", "das Hochwasser"], ["unica", "einzigartig"], ["particolare", "besonders"], ["il ponte", "die Brücke"], ["verificarsi", "passieren"], ["comune", "gewöhnlich"], ["temporaneo", "vorübergehend"], ["la vita", "das Leben"], ["l'abitante", "der Einwohner"], ["il livello del mare", "der Meeresspiegel"], ["causare", "verursachen"], ["l'inondazione", "die Überschwemmung"], ["la marea", "die Flut"], ["far aumentare", "erhöhen lassen"], ["il meteo", "das Wetter"], ["influenzare", "beeinflussen"], ["la tempesta", "das Gewitter"], ["la posizione", "die Lage"], ["la laguna", "die Lagune"], ["esposto", "ausgesetzt"], ["il risultato", "das Ergebnis"], ["avverso", "ungünstig"], ["affrontare", "angehen"], ["la soluzione", "die Lösung"], ["la passerella", "der Fußgängersteig"], ["camminare", "laufen"], ["mobile", "beweglich / mobil"]];
+const DB_NAME='jc-italienisch-lesson2-venezia', STORE='recordings';
+let dbPromise, currentPlayback=null, activeRecorder=null, activeStream=null, activeCard=null, recordingId=null, chunks=[];
+function openDB(){if(!dbPromise)dbPromise=new Promise((resolve,reject)=>{const req=indexedDB.open(DB_NAME,1);req.onupgradeneeded=()=>{if(!req.result.objectStoreNames.contains(STORE))req.result.createObjectStore(STORE,{keyPath:'id'})};req.onsuccess=()=>resolve(req.result);req.onerror=()=>reject(req.error)});return dbPromise}
+async function saveRecording(item){const db=await openDB();return new Promise((resolve,reject)=>{const tx=db.transaction(STORE,'readwrite');tx.objectStore(STORE).put(item);tx.oncomplete=resolve;tx.onerror=()=>reject(tx.error)})}
+async function getRecording(id){const db=await openDB();return new Promise((resolve,reject)=>{const req=db.transaction(STORE).objectStore(STORE).get(id);req.onsuccess=()=>resolve(req.result);req.onerror=()=>reject(req.error)})}
+async function deleteRecording(id){const db=await openDB();return new Promise((resolve,reject)=>{const tx=db.transaction(STORE,'readwrite');tx.objectStore(STORE).delete(id);tx.oncomplete=resolve;tx.onerror=()=>reject(tx.error)})}
+function show(card,text){card.querySelector('.status').textContent=text}
+function stopPlayback(){if(currentPlayback){currentPlayback.pause();currentPlayback.currentTime=0;currentPlayback=null}}
+function addCard(item,kind,index){
+ const num=String(index+1).padStart(2,'0'), id=kind+'-'+num, file=(kind==='satz'?'Satz_':'Vokabel_')+num+'.mp3';
+ const card=document.createElement('article');card.className='card';
+ const label=document.createElement('div');label.className='num';label.textContent=(kind==='satz'?'SATZ ':'VOKABEL ')+num;
+ const it=document.createElement('div');it.className='it';it.lang='it';it.textContent=item[0];
+ const de=document.createElement('p');de.className='de';de.lang='de';de.textContent=item[1];
+ const actions=document.createElement('div');actions.className='actions';
+ const listen=document.createElement('button');listen.className='primary';listen.textContent='▶ Anhören';listen.type='button';
+ const record=document.createElement('button');record.className='record';record.textContent='● Aufnehmen';record.type='button';
+ const mine=document.createElement('button');mine.className='mine';mine.textContent='▶ Meine Aufnahme';mine.type='button';
+ const del=document.createElement('button');del.className='delete';del.textContent='Löschen';del.type='button';
+ const status=document.createElement('div');status.className='status';status.setAttribute('aria-live','polite');
+ actions.append(listen,record,mine,del);card.append(label,it,de,actions,status);
+ listen.addEventListener('click',async()=>{stopPlayback();document.querySelectorAll('.status').forEach(x=>x.textContent='');const audio=new Audio(file);currentPlayback=audio;audio.onended=()=>{if(currentPlayback===audio)currentPlayback=null;show(card,'ElevenLabs-Aufnahme beendet.')};audio.onerror=()=>{if(currentPlayback===audio)currentPlayback=null;show(card,'MP3-Datei konnte nicht geladen werden.')};show(card,'ElevenLabs-Aufnahme läuft …');try{await audio.play()}catch(e){if(currentPlayback===audio)currentPlayback=null;show(card,'Wiedergabe fehlgeschlagen: '+(e.message||'Audiofehler'))}});
+ mine.addEventListener('click',async()=>{stopPlayback();try{const saved=await getRecording(id);if(!saved?.blob){show(card,'Noch keine eigene Aufnahme vorhanden.');return}const audio=new Audio(URL.createObjectURL(saved.blob));currentPlayback=audio;audio.onended=()=>{if(currentPlayback===audio)currentPlayback=null;show(card,'Deine Aufnahme beendet.')};audio.onerror=()=>show(card,'Deine Aufnahme konnte nicht abgespielt werden.');show(card,'Deine Aufnahme läuft …');await audio.play()}catch(e){show(card,'Aufnahme konnte nicht geladen werden.')}});
+ del.addEventListener('click',async()=>{try{await deleteRecording(id);show(card,'Eigene Aufnahme gelöscht.')}catch(e){show(card,'Löschen fehlgeschlagen.')}});
+ record.addEventListener('click',async()=>{
+  if(activeRecorder&&activeRecorder.state==='recording'){
+   if(activeCard!==card){show(card,'Beende zuerst die andere Aufnahme.');return}
+   record.disabled=true;show(card,'Aufnahme wird gespeichert …');activeRecorder.stop();return;
+  }
+  if(!navigator.mediaDevices?.getUserMedia||!window.MediaRecorder){show(card,'Aufnehmen wird von diesem Browser nicht unterstützt.');return}
+  record.disabled=true;show(card,'Mikrofon wird gestartet …');
+  try{
+   const stream=await navigator.mediaDevices.getUserMedia({audio:true}), localChunks=[];
+   activeStream=stream;activeCard=card;recordingId=id;chunks=localChunks;const recorder=new MediaRecorder(stream);activeRecorder=recorder;
+   recorder.ondataavailable=e=>{if(e.data.size)localChunks.push(e.data)};
+   recorder.onstop=async()=>{try{const blob=new Blob(localChunks,{type:recorder.mimeType||localChunks[0]?.type||'audio/webm'});if(!blob.size)throw new Error('Keine Audiodaten.');await saveRecording({id,blob,savedAt:Date.now()});show(card,'Aufnahme gespeichert.')}catch(e){show(card,'Aufnahme nicht gespeichert: '+(e.message||'Fehler'))}finally{stream.getTracks().forEach(t=>t.stop());activeRecorder=null;activeStream=null;activeCard=null;record.disabled=false;record.classList.remove('recording');record.textContent='● Aufnehmen'}};
+   recorder.start();record.classList.add('recording');record.textContent='■ Aufnahme stoppen';record.disabled=false;show(card,'Aufnahme läuft – sprich und tippe danach auf „Aufnahme stoppen“.');
+  }catch(e){record.disabled=false;show(card,e.name==='NotAllowedError'?'Mikrofonzugriff nicht erlaubt. Bitte den Browserzugriff erlauben.':'Mikrofon konnte nicht gestartet werden. Fehlercode: '+(e.name||'unbekannt'))}
+ });
+ return card;
+}
+story.forEach((item,i)=>document.getElementById('story').appendChild(addCard(item,'satz',i)));
+vocab.forEach((item,i)=>document.getElementById('vocab').appendChild(addCard(item,'vokabel',i)));
+window.addEventListener('pagehide',()=>{stopPlayback();if(activeRecorder?.state==='recording')activeRecorder.stop();if(activeStream)activeStream.getTracks().forEach(t=>t.stop())});
+</script>
+</body></html>

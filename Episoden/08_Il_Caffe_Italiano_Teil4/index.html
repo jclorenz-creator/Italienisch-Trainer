@@ -1,0 +1,287 @@
+<!DOCTYPE html>
+
+<html lang="de"><head><meta charset="utf-8"/><meta content="width=device-width, initial-scale=1" name="viewport"/>
+<title>Episodio 8 – Il caffè italiano – Teil 4</title>
+<style>
+:root{color-scheme:light;font-family:-apple-system,BlinkMacSystemFont,"Segoe UI",Arial,sans-serif}
+body{margin:0;background:#f5f6f8;color:#20252c;line-height:1.5}
+main{max-width:850px;margin:auto;padding:20px 14px 60px}
+h1{font-size:clamp(1.55rem,4vw,2rem);margin:0 0 4px}
+.subtitle{color:#556270;margin:0 0 24px}.satz{background:white;border:1px solid #dfe3e8;border-radius:12px;margin:0 0 15px;padding:16px 18px;box-shadow:0 2px 5px #1823380a}
+.nr{font-weight:700;color:#47688b;font-size:.85rem}.italienisch{font-size:1.2rem;font-weight:600;margin:10px 0}.deutsch{font-size:1rem;color:#515b66;margin:0 0 16px}
+.buttons{display:flex;gap:8px;flex-wrap:wrap}button{font:inherit;font-size:.91rem;border:1px solid #cbd4df;border-radius:8px;padding:10px 12px;background:#eef3f8;color:#1d3550;cursor:pointer;touch-action:manipulation}button:disabled{opacity:.42;cursor:default}button.record{background:#fff1f0;color:#9b2d2d;border-color:#ecc4c4}button.record.active{background:#ba3535;color:white}.status{font-size:.85rem;color:#687584;margin-top:7px;min-height:1em}.hint{color:#5b6774;font-size:.93rem}
+</style></head><body><main>
+<h1>Episodio 8 – Il caffè italiano</h1><p class="subtitle">Teil 4 · 19 Sätze · Anhören, nachsprechen und eigene Aufnahme vergleichen</p>
+<p class="hint">Tippe auf «▶ Anhören», sprich den Satz nach und nimm dich bei Bedarf mit «● Aufnehmen» auf. Die eigene Aufnahme bleibt nur während dieser Sitzung im Browser verfügbar.</p>
+<section class="satz" id="satz-01">
+<div class="nr">Satz 01</div>
+<p class="italienisch" lang="it">Ma attenzione, ci sono alcune regole importanti che devi assolutamente conoscere.</p>
+<p class="deutsch" lang="de">Aber Achtung, es gibt einige wichtige Regeln, die du unbedingt kennen musst.</p>
+<div class="buttons">
+<button onclick="playOriginal(1)" type="button">▶ Anhören</button>
+<button class="record" id="record-1" onclick="toggleRecord(1)" type="button">● Aufnehmen</button>
+<button disabled="" id="play-1" onclick="playRecording(1)" type="button">▶ Meine Aufnahme</button>
+<button disabled="" id="delete-1" onclick="deleteRecording(1)" type="button">🗑 Löschen</button>
+</div>
+<div aria-live="polite" class="status" id="status-1"></div>
+</section>
+<section class="satz" id="satz-02">
+<div class="nr">Satz 02</div>
+<p class="italienisch" lang="it">La più famosa è: il cappuccino si beve solo la mattina.</p>
+<p class="deutsch" lang="de">Die bekannteste lautet: Cappuccino trinkt man nur am Morgen.</p>
+<div class="buttons">
+<button onclick="playOriginal(2)" type="button">▶ Anhören</button>
+<button class="record" id="record-2" onclick="toggleRecord(2)" type="button">● Aufnehmen</button>
+<button disabled="" id="play-2" onclick="playRecording(2)" type="button">▶ Meine Aufnahme</button>
+<button disabled="" id="delete-2" onclick="deleteRecording(2)" type="button">🗑 Löschen</button>
+</div>
+<div aria-live="polite" class="status" id="status-2"></div>
+</section>
+<section class="satz" id="satz-03">
+<div class="nr">Satz 03</div>
+<p class="italienisch" lang="it">Se entri in un bar dopo pranzo e chiedi un cappuccino, tutti ti guardano un po’ sorpresi.</p>
+<p class="deutsch" lang="de">Wenn du nach dem Mittagessen in einer Bar einen Cappuccino bestellst, schauen dich alle etwas überrascht an.</p>
+<div class="buttons">
+<button onclick="playOriginal(3)" type="button">▶ Anhören</button>
+<button class="record" id="record-3" onclick="toggleRecord(3)" type="button">● Aufnehmen</button>
+<button disabled="" id="play-3" onclick="playRecording(3)" type="button">▶ Meine Aufnahme</button>
+<button disabled="" id="delete-3" onclick="deleteRecording(3)" type="button">🗑 Löschen</button>
+</div>
+<div aria-live="polite" class="status" id="status-3"></div>
+</section>
+<section class="satz" id="satz-04">
+<div class="nr">Satz 04</div>
+<p class="italienisch" lang="it">Per un italiano, latte e caffè insieme dopo un piatto di pasta o di carne sono “troppo pesanti”.</p>
+<p class="deutsch" lang="de">Für einen Italiener sind Milch und Kaffee zusammen nach einem Pasta- oder Fleischgericht zu schwer.</p>
+<div class="buttons">
+<button onclick="playOriginal(4)" type="button">▶ Anhören</button>
+<button class="record" id="record-4" onclick="toggleRecord(4)" type="button">● Aufnehmen</button>
+<button disabled="" id="play-4" onclick="playRecording(4)" type="button">▶ Meine Aufnahme</button>
+<button disabled="" id="delete-4" onclick="deleteRecording(4)" type="button">🗑 Löschen</button>
+</div>
+<div aria-live="polite" class="status" id="status-4"></div>
+</section>
+<section class="satz" id="satz-05">
+<div class="nr">Satz 05</div>
+<p class="italienisch" lang="it">Meglio un semplice espresso.</p>
+<p class="deutsch" lang="de">Besser ist ein einfacher Espresso.</p>
+<div class="buttons">
+<button onclick="playOriginal(5)" type="button">▶ Anhören</button>
+<button class="record" id="record-5" onclick="toggleRecord(5)" type="button">● Aufnehmen</button>
+<button disabled="" id="play-5" onclick="playRecording(5)" type="button">▶ Meine Aufnahme</button>
+<button disabled="" id="delete-5" onclick="deleteRecording(5)" type="button">🗑 Löschen</button>
+</div>
+<div aria-live="polite" class="status" id="status-5"></div>
+</section>
+<section class="satz" id="satz-06">
+<div class="nr">Satz 06</div>
+<p class="italienisch" lang="it">Un’altra regola riguarda il tempo.</p>
+<p class="deutsch" lang="de">Eine weitere Regel betrifft die Zeit.</p>
+<div class="buttons">
+<button onclick="playOriginal(6)" type="button">▶ Anhören</button>
+<button class="record" id="record-6" onclick="toggleRecord(6)" type="button">● Aufnehmen</button>
+<button disabled="" id="play-6" onclick="playRecording(6)" type="button">▶ Meine Aufnahme</button>
+<button disabled="" id="delete-6" onclick="deleteRecording(6)" type="button">🗑 Löschen</button>
+</div>
+<div aria-live="polite" class="status" id="status-6"></div>
+</section>
+<section class="satz" id="satz-07">
+<div class="nr">Satz 07</div>
+<p class="italienisch" lang="it">Il caffè si beve in piedi, al banco, in pochi secondi.</p>
+<p class="deutsch" lang="de">Den Kaffee trinkt man im Stehen an der Theke, in wenigen Sekunden.</p>
+<div class="buttons">
+<button onclick="playOriginal(7)" type="button">▶ Anhören</button>
+<button class="record" id="record-7" onclick="toggleRecord(7)" type="button">● Aufnehmen</button>
+<button disabled="" id="play-7" onclick="playRecording(7)" type="button">▶ Meine Aufnahme</button>
+<button disabled="" id="delete-7" onclick="deleteRecording(7)" type="button">🗑 Löschen</button>
+</div>
+<div aria-live="polite" class="status" id="status-7"></div>
+</section>
+<section class="satz" id="satz-08">
+<div class="nr">Satz 08</div>
+<p class="italienisch" lang="it">È un gesto veloce: arrivi, ordini, bevi, paghi e vai.</p>
+<p class="deutsch" lang="de">Es geht schnell: Du kommst, bestellst, trinkst, bezahlst und gehst.</p>
+<div class="buttons">
+<button onclick="playOriginal(8)" type="button">▶ Anhören</button>
+<button class="record" id="record-8" onclick="toggleRecord(8)" type="button">● Aufnehmen</button>
+<button disabled="" id="play-8" onclick="playRecording(8)" type="button">▶ Meine Aufnahme</button>
+<button disabled="" id="delete-8" onclick="deleteRecording(8)" type="button">🗑 Löschen</button>
+</div>
+<div aria-live="polite" class="status" id="status-8"></div>
+</section>
+<section class="satz" id="satz-09">
+<div class="nr">Satz 09</div>
+<p class="italienisch" lang="it">Se ti siedi al tavolino, il prezzo diventa più alto e il ritmo cambia.</p>
+<p class="deutsch" lang="de">Wenn du dich an einen Tisch setzt, wird der Preis höher und der Rhythmus verändert sich.</p>
+<div class="buttons">
+<button onclick="playOriginal(9)" type="button">▶ Anhören</button>
+<button class="record" id="record-9" onclick="toggleRecord(9)" type="button">● Aufnehmen</button>
+<button disabled="" id="play-9" onclick="playRecording(9)" type="button">▶ Meine Aufnahme</button>
+<button disabled="" id="delete-9" onclick="deleteRecording(9)" type="button">🗑 Löschen</button>
+</div>
+<div aria-live="polite" class="status" id="status-9"></div>
+</section>
+<section class="satz" id="satz-10">
+<div class="nr">Satz 10</div>
+<p class="italienisch" lang="it">Per questo i tavolini nei bar del centro, pieni di turisti, costano molto di più:</p>
+<p class="deutsch" lang="de">Deshalb kostet ein Tisch in den Bars im Zentrum, die voller Touristen sind, viel mehr:</p>
+<div class="buttons">
+<button onclick="playOriginal(10)" type="button">▶ Anhören</button>
+<button class="record" id="record-10" onclick="toggleRecord(10)" type="button">● Aufnehmen</button>
+<button disabled="" id="play-10" onclick="playRecording(10)" type="button">▶ Meine Aufnahme</button>
+<button disabled="" id="delete-10" onclick="deleteRecording(10)" type="button">🗑 Löschen</button>
+</div>
+<div aria-live="polite" class="status" id="status-10"></div>
+</section>
+<section class="satz" id="satz-11">
+<div class="nr">Satz 11</div>
+<p class="italienisch" lang="it">non stai pagando solo il caffè, ma il tempo di stare seduto e la vista sulla piazza.</p>
+<p class="deutsch" lang="de">Du bezahlst nicht nur den Kaffee, sondern auch die Zeit im Sitzen und den Blick auf den Platz.</p>
+<div class="buttons">
+<button onclick="playOriginal(11)" type="button">▶ Anhören</button>
+<button class="record" id="record-11" onclick="toggleRecord(11)" type="button">● Aufnehmen</button>
+<button disabled="" id="play-11" onclick="playRecording(11)" type="button">▶ Meine Aufnahme</button>
+<button disabled="" id="delete-11" onclick="deleteRecording(11)" type="button">🗑 Löschen</button>
+</div>
+<div aria-live="polite" class="status" id="status-11"></div>
+</section>
+<section class="satz" id="satz-12">
+<div class="nr">Satz 12</div>
+<p class="italienisch" lang="it">E poi c’è la regola della generosità:</p>
+<p class="deutsch" lang="de">Und dann gibt es noch die Regel der Grosszügigkeit:</p>
+<div class="buttons">
+<button onclick="playOriginal(12)" type="button">▶ Anhören</button>
+<button class="record" id="record-12" onclick="toggleRecord(12)" type="button">● Aufnehmen</button>
+<button disabled="" id="play-12" onclick="playRecording(12)" type="button">▶ Meine Aufnahme</button>
+<button disabled="" id="delete-12" onclick="deleteRecording(12)" type="button">🗑 Löschen</button>
+</div>
+<div aria-live="polite" class="status" id="status-12"></div>
+</section>
+<section class="satz" id="satz-13">
+<div class="nr">Satz 13</div>
+<p class="italienisch" lang="it">se inviti qualcuno e dici “Ti offro un caffè”, significa che sei tu a pagare.</p>
+<p class="deutsch" lang="de">Wenn du jemanden einlädst und sagst «Ich spendiere dir einen Kaffee», bedeutet das, dass du bezahlst.</p>
+<div class="buttons">
+<button onclick="playOriginal(13)" type="button">▶ Anhören</button>
+<button class="record" id="record-13" onclick="toggleRecord(13)" type="button">● Aufnehmen</button>
+<button disabled="" id="play-13" onclick="playRecording(13)" type="button">▶ Meine Aufnahme</button>
+<button disabled="" id="delete-13" onclick="deleteRecording(13)" type="button">🗑 Löschen</button>
+</div>
+<div aria-live="polite" class="status" id="status-13"></div>
+</section>
+<section class="satz" id="satz-14">
+<div class="nr">Satz 14</div>
+<p class="italienisch" lang="it">È un piccolo gesto, ma pieno di valore sociale.</p>
+<p class="deutsch" lang="de">Es ist eine kleine Geste, aber von grosser gesellschaftlicher Bedeutung.</p>
+<div class="buttons">
+<button onclick="playOriginal(14)" type="button">▶ Anhören</button>
+<button class="record" id="record-14" onclick="toggleRecord(14)" type="button">● Aufnehmen</button>
+<button disabled="" id="play-14" onclick="playRecording(14)" type="button">▶ Meine Aufnahme</button>
+<button disabled="" id="delete-14" onclick="deleteRecording(14)" type="button">🗑 Löschen</button>
+</div>
+<div aria-live="polite" class="status" id="status-14"></div>
+</section>
+<section class="satz" id="satz-15">
+<div class="nr">Satz 15</div>
+<p class="italienisch" lang="it">Spesso un caffè non è solo un euro:</p>
+<p class="deutsch" lang="de">Oft ist ein Kaffee nicht einfach nur ein Euro:</p>
+<div class="buttons">
+<button onclick="playOriginal(15)" type="button">▶ Anhören</button>
+<button class="record" id="record-15" onclick="toggleRecord(15)" type="button">● Aufnehmen</button>
+<button disabled="" id="play-15" onclick="playRecording(15)" type="button">▶ Meine Aufnahme</button>
+<button disabled="" id="delete-15" onclick="deleteRecording(15)" type="button">🗑 Löschen</button>
+</div>
+<div aria-live="polite" class="status" id="status-15"></div>
+</section>
+<section class="satz" id="satz-16">
+<div class="nr">Satz 16</div>
+<p class="italienisch" lang="it">è un “grazie”, un “piacere di rivederti”, un “mi fa piacere stare con te”.</p>
+<p class="deutsch" lang="de">Er ist ein «Danke», ein «Schön, dich wiederzusehen» oder ein «Ich verbringe gerne Zeit mit dir».</p>
+<div class="buttons">
+<button onclick="playOriginal(16)" type="button">▶ Anhören</button>
+<button class="record" id="record-16" onclick="toggleRecord(16)" type="button">● Aufnehmen</button>
+<button disabled="" id="play-16" onclick="playRecording(16)" type="button">▶ Meine Aufnahme</button>
+<button disabled="" id="delete-16" onclick="deleteRecording(16)" type="button">🗑 Löschen</button>
+</div>
+<div aria-live="polite" class="status" id="status-16"></div>
+</section>
+<section class="satz" id="satz-17">
+<div class="nr">Satz 17</div>
+<p class="italienisch" lang="it">La prossima volta che sarai in Italia, prova a vivere il caffè come fanno gli italiani:</p>
+<p class="deutsch" lang="de">Wenn du das nächste Mal in Italien bist, versuche den Kaffee so zu erleben wie die Italiener:</p>
+<div class="buttons">
+<button onclick="playOriginal(17)" type="button">▶ Anhören</button>
+<button class="record" id="record-17" onclick="toggleRecord(17)" type="button">● Aufnehmen</button>
+<button disabled="" id="play-17" onclick="playRecording(17)" type="button">▶ Meine Aufnahme</button>
+<button disabled="" id="delete-17" onclick="deleteRecording(17)" type="button">🗑 Löschen</button>
+</div>
+<div aria-live="polite" class="status" id="status-17"></div>
+</section>
+<section class="satz" id="satz-18">
+<div class="nr">Satz 18</div>
+<p class="italienisch" lang="it">in piedi al banco, veloce ma intenso,</p>
+<p class="deutsch" lang="de">im Stehen an der Theke, schnell, aber intensiv,</p>
+<div class="buttons">
+<button onclick="playOriginal(18)" type="button">▶ Anhören</button>
+<button class="record" id="record-18" onclick="toggleRecord(18)" type="button">● Aufnehmen</button>
+<button disabled="" id="play-18" onclick="playRecording(18)" type="button">▶ Meine Aufnahme</button>
+<button disabled="" id="delete-18" onclick="deleteRecording(18)" type="button">🗑 Löschen</button>
+</div>
+<div aria-live="polite" class="status" id="status-18"></div>
+</section>
+<section class="satz" id="satz-19">
+<div class="nr">Satz 19</div>
+<p class="italienisch" lang="it">con un sorriso e magari una chiacchiera con il barista.</p>
+<p class="deutsch" lang="de">mit einem Lächeln und vielleicht einem kleinen Gespräch mit dem Barista.</p>
+<div class="buttons">
+<button onclick="playOriginal(19)" type="button">▶ Anhören</button>
+<button class="record" id="record-19" onclick="toggleRecord(19)" type="button">● Aufnehmen</button>
+<button disabled="" id="play-19" onclick="playRecording(19)" type="button">▶ Meine Aufnahme</button>
+<button disabled="" id="delete-19" onclick="deleteRecording(19)" type="button">🗑 Löschen</button>
+</div>
+<div aria-live="polite" class="status" id="status-19"></div>
+</section>
+
+</main><audio id="player" preload="none"></audio>
+<script>
+'use strict';
+const player=document.getElementById('player');
+const recordings=new Map();
+let recorder=null,stream=null,recordingFor=null,chunks=[];
+function status(n,message){document.getElementById('status-'+n).textContent=message||'';}
+function playOriginal(n){
+ if(recorder && recorder.state==='recording'){status(n,'Bitte zuerst die Aufnahme beenden.');return;}
+ player.pause();player.src=String(n).padStart(2,'0')+'.mp3';
+ player.play().then(()=>status(n,'Original wird abgespielt.')).catch(()=>status(n,'Audio konnte nicht abgespielt werden. Bitte MP3-Datei und Dateinamen prüfen.'));
+}
+async function toggleRecord(n){
+ if(recorder && recorder.state==='recording'){
+  if(recordingFor===n){recorder.stop();}else{status(n,'Bitte zuerst die andere Aufnahme beenden.');}
+  return;
+ }
+ if(!navigator.mediaDevices?.getUserMedia || !window.MediaRecorder){status(n,'Die Aufnahme wird von diesem Browser nicht unterstützt. Bitte die HTTPS-Seite in Safari öffnen.');return;}
+ try{
+  player.pause();stream=await navigator.mediaDevices.getUserMedia({audio:true});
+  const mime=['audio/mp4','audio/webm;codecs=opus','audio/webm'].find(x=>MediaRecorder.isTypeSupported(x));
+  recorder=new MediaRecorder(stream,mime?{mimeType:mime}:undefined);
+  chunks=[];recordingFor=n;
+  recorder.ondataavailable=e=>{if(e.data.size)chunks.push(e.data);};
+  recorder.onstop=()=>{
+   const type=recorder.mimeType||'audio/mp4';const blob=new Blob(chunks,{type});
+   const old=recordings.get(n);if(old)URL.revokeObjectURL(old);
+   recordings.set(n,URL.createObjectURL(blob));
+   document.getElementById('play-'+n).disabled=false;
+   document.getElementById('delete-'+n).disabled=false;
+   document.getElementById('record-'+n).classList.remove('active');
+   document.getElementById('record-'+n).textContent='● Aufnehmen';
+   status(n,'Aufnahme gespeichert. Jetzt «▶ Meine Aufnahme» wählen.');
+   stream?.getTracks().forEach(t=>t.stop());stream=null;recorder=null;recordingFor=null;
+  };
+  recorder.start();document.getElementById('record-'+n).classList.add('active');
+  document.getElementById('record-'+n).textContent='■ Aufnahme beenden';
+  status(n,'Aufnahme läuft …');
+ }catch(e){status(n,'Mikrofonzugriff nicht möglich. Bitte die Mikrofonberechtigung für Safari prüfen.');stream?.getTracks().forEach(t=>t.stop());stream=null;recorder=null;recordingFor=null;}
+}
+function playRecording(n){const url=recordings.get(n);if(!url){status(n,'Noch keine Aufnahme vorhanden.');return;}player.pause();player.src=url;player.play().then(()=>status(n,'Deine Aufnahme wird abgespielt.')).catch(()=>status(n,'Deine Aufnahme konnte nicht abgespielt werden.'));}
+function deleteRecording(n){const url=recordings.get(n);if(!url)return;player.pause();if(player.src===url)player.removeAttribute('src');URL.revokeObjectURL(url);recordings.delete(n);document.getElementById('play-'+n).disabled=true;document.getElementById('delete-'+n).disabled=true;status(n,'Aufnahme gelöscht.');}
+</script></body></html>
